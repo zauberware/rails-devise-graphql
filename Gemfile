@@ -14,7 +14,7 @@ gem 'devise-jwt', '~> 0.5.8'                # Use JWT token authentication with 
 gem 'bcrypt', '~> 3.1.7'                    # Use ActiveModel has_secure_password
 gem 'graphql'
 gem 'rack-cors'
-gem 'graphiql-rails', group: :development
+# gem 'graphiql-rails', group: :development
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
