@@ -1,4 +1,4 @@
-# Rails API-only backend working with devise & graphQL
+# Rails API-only boilerplate with devise & graphQL
 
 This is a boilerplate to build your next Saas product. It's a RubyOnRails 5 API only backend with Authentication and GrpahQL API. It works nicely together with clients made with **React.js & React.Native** or any other frontend which implements the [JSON Web Tokens](https://jwt.io/introduction/) philosophy. We have a demo frontend made with [gatsbyJS](https://www.gatsbyjs.org/) available here: <https://gatsby-redux.zauberware.com/>.
 
@@ -76,6 +76,18 @@ TBD: rspect
 
 ### 8. Deployment
 The project runs on every webhoster with ruby installed. The current demo was deployed to an heroku dyno with a Postgresql database as the only resource.
+
+**Make sure all ENV vars are set and the database settings are valid.**
+
+### 9. Frontend
+
+#### GatsbyJS
+
+If you need a frontend than have a look at this basic [Gatsby boilerplate](https://github.com/zauberware/gatsby-starter-redux-saas). A Gatsby Redux Saas starter for your next Saas product. Uses react-redux, apollo-client, magicsoup.io, styled-components, styled-system.
+
+![zauberware technologies](https://github.com/zauberware/gatsby-starter-redux-saas/raw/master/static/website-preview.jpg)
+
+
 
 ## Author
 
