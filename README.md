@@ -1,4 +1,4 @@
-# Rails API-only boilerplate with devise & graphQL
+# Rails API-only boilerplate with devise & JWT & graphQL
 
 This is a boilerplate to build your next SaaS product. It's a RubyOnRails 5 API only backend with Authentication and GrpahQL API. It works nicely together with clients made with **React.js & React.Native** or any other frontend which implements the [JSON Web Tokens](https://jwt.io/introduction/) philosophy. We have a demo frontend made with [gatsbyJS](https://www.gatsbyjs.org/) available here: <https://gatsby-redux.zauberware.com/>.
 
