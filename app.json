@@ -24,16 +24,16 @@
   },
   "env": {
     "CLIENT_URL": {
-      "description": "Enter your client domain for CORS.",
-      "generator": "string"
-    },
-    "DEVISE_JWT_SECRET_KEY": {
-      "description": "A secret key for verifying the integrity of signed JWT tokens.",
-      "generator": "secret"
+      "description": "Enter the client domain for CORS. Choose http://0.0.0.0:8000 when using our gatsby frontend.",
+      "value": "http://0.0.0.0:8000"
     },
     "WEB_CONCURRENCY": {
       "description": "The number of processes to run.",
       "value": "3"
+    },
+    "DEVISE_JWT_SECRET_KEY": {
+      "description": "A secret key for verifying the integrity of signed JWT tokens.",
+      "generator": "secret"
     }
   },
   "image": "heroku/ruby",

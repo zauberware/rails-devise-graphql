@@ -51,7 +51,7 @@ While this is an API-only application you will not be able to access any routes 
 
 Point the GraphQL IDE to `http://0.0.0.0:3000/graphql`
 
-**Note:** Make sure that the `.env` file is included in the root of your project and you have defined `DOMAIN`, `CLIENT_URL` and `DEVISE_JWT_SECRET_KEY`. You can try out the [Demo frontend](https://github.com/zauberware/gatsby-starter-redux-saas) or you implement the actions in any other client. Read more about the JSON Web Token [this](https://github.com/zauberware/rails-devise-graphql). There are plenty of packages available.
+**Note:** Make sure that the `.env` file is included in the root of your project and you have defined `CLIENT_URL` and `DEVISE_JWT_SECRET_KEY`. You can try out the [Demo frontend](https://github.com/zauberware/gatsby-starter-redux-saas) or you implement the actions in any other client. Read more about the JSON Web Token [this](https://github.com/zauberware/rails-devise-graphql). There are plenty of packages available.
 
 ## What's included?
 
