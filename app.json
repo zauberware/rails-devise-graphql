@@ -28,8 +28,12 @@
       "value": "http://0.0.0.0:8000"
     },
     "WEB_CONCURRENCY": {
-      "description": "The number of processes to run.",
-      "value": "3"
+      "description": "Specifies the number of `workers` to boot in clustered mode.",
+      "value": "2"
+    },
+    "RAILS_MAX_THREADS": {
+      "description": "Puma can serve each request in a thread from an internal thread pool.",
+      "value": "5"
     },
     "DEVISE_JWT_SECRET_KEY": {
       "description": "A secret key for verifying the integrity of signed JWT tokens.",
