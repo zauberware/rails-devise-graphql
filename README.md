@@ -10,7 +10,7 @@ This is a boilerplate to build your next Saas product. It's a RubyOnRails 5 API 
 
 ## Quick start
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/heroku/node-js-sample)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/zauberware/rails-devise-graphql)
 
 or
 
@@ -81,7 +81,7 @@ TBD: rspect
 ### 8. Deployment
 The project runs on every webhoster with ruby installed. The current demo was deployed to an heroku dyno with a Postgresql database as the only resource.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/heroku/node-js-sample)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/zauberware/rails-devise-graphql)
 
 
 **Make sure all ENV vars are set and the database settings are valid.**
