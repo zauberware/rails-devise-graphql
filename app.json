@@ -1,0 +1,45 @@
+{
+  "name": "Rails Devise GraphQL",
+  "description": "This is a boilerplate to build your next Saas product. It's a RubyOnRails 5 API only backend with Authentication and GrpahQL API.",
+  "keywords": [
+    "saas",
+    "saas-boilerplate",
+    "ruby-on-rails",
+    "rails5",
+    "devise",
+    "graphql",
+    "apollo-server",
+    "ruby-graphql",
+    "rails-boilerplate",
+    "rails-api-only",
+    "api-only",
+    "gatsby-backend"
+  ],
+  "website": "https://gatsby-redux.zauberware.com/",
+  "repository": "https://github.com/zauberware/rails-devise-graphql",
+  "logo": "https://avatars3.githubusercontent.com/u/1753330?s=200&v=4",
+  "success_url": "/",
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  },
+  "env": {
+    "CLIENT_URL": {
+      "description": "Enter your client domain for CORS.",
+      "generator": "string"
+    },
+    "DEVISE_JWT_SECRET_KEY": {
+      "description": "A secret key for verifying the integrity of signed JWT tokens.",
+      "generator": "secret"
+    },
+    "WEB_CONCURRENCY": {
+      "description": "The number of processes to run.",
+      "value": "3"
+    }
+  },
+  "image": "heroku/ruby",
+  "addons": [
+    {
+      "plan": "heroku-postgresql:hobby-dev"
+    }
+  ]
+}

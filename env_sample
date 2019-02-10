@@ -1,3 +1,2 @@
-DOMAIN=0.0.0.0:3000
 CLIENT_URL=0.0.0.0:8000
 DEVISE_JWT_SECRET_KEY=replace-this-key-with-a-secret
