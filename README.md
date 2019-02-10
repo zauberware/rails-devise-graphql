@@ -76,7 +76,7 @@ The app uses [Puma](https://github.com/puma/puma) as the web serber. It is a sim
 
 ### 7. Testing
 
-TBD: rspect
+TBD: rspec?
 
 ### 8. Deployment
 The project runs on every webhoster with ruby installed. The current demo was deployed to an heroku dyno with a Postgresql database as the only resource.
