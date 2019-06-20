@@ -3,6 +3,7 @@ module Types
     
     ## LOGIN
     field :login, UserType, null: true do
+      description "Login for users"
       argument :email, String, required: true
       argument :password, String, required: true
     end
@@ -17,23 +18,29 @@ module Types
     end
 
     ## TOKEN-LOGIN
-    field :token_login, UserType, null: true
+    field :token_login, UserType, null: true do
+      description "JWT token login"
+    end
     def token_login
       context[:current_user]
     end
 
     ## LOGOUT
-    field :logout, Boolean, null: true
+    field :logout, Boolean, null: true do
+      description "Logout for users"
+    end
     def logout
       if context[:current_user]
         context[:current_user].update(jti: SecureRandom.uuid)
+        return true
       end 
-      true
+      false
     end
 
     # Uncomment to enable features
   
     field :update_user, UserType, null: true do
+      description "Update user"
       argument :password, String, required: false
       argument :passwordConfirmation, String, required: false
     end
@@ -44,7 +51,7 @@ module Types
       )
       user = context[:current_user]
       return nil if !user
-      user.update(
+      user.update!(
         password: password,
         password_confirmation: password_confirmation
       )
@@ -52,6 +59,7 @@ module Types
     end
   
     field :sign_up, UserType, null: true do
+      description "Sign up for users"
       argument :email, String, required: true
       argument :password, String, required: true
       argument :passwordConfirmation, String, required: true
@@ -69,12 +77,14 @@ module Types
     end
 
     field :send_reset_password_instructions, Boolean, null: true do
+      description "Send password reset instructions to users email"
       argument :email, String, required: true
     end
     def send_reset_password_instructions(email:)
-      user = User.where(email: email).first
-      return false if !user
+      user = User.find_by_email(email)
+      return true if !user
       user.send_reset_password_instructions
+      true
     end
 
     field :reset_password, Boolean, null: true do
@@ -90,7 +100,8 @@ module Types
 
     #
     # uncomment for unlock instructions
-    # 
+    #
+    # UNLOCK ACCOUNT
     # field :unlock, Boolean, null: false do
     #   argument :unlockToken, String, required: true
     # end
@@ -99,11 +110,12 @@ module Types
     #   return user.id
     # end
 
+    # RESEND UNLOCK INSTRUCTIONS
     # field :resend_unlock_instructions, Boolean, null: false do
     #   argument :email, String, required: true
     # end
     # def resend_unlock_instructions(email:)
-    #   user = User.where(email: email).first
+    #   user = User.find_by_email(email)
     #   return false if !user
 
     #   user.resend_unlock_instructions
