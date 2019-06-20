@@ -5,7 +5,7 @@ This is a boilerplate to build your next SaaS product. It's a RubyOnRails 5 API 
 ## Versions
 
 - Tested with ruby version `2.4.x`
-- Rails version `~>5.2.2`
+- Rails version `~>5.2.3`
 - Postgresql Server
 
 ## Quick start
