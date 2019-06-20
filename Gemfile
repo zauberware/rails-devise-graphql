@@ -13,6 +13,7 @@ gem 'devise'                                # Use devise as authentication modul
 gem 'devise-jwt', '~> 0.5.8'                # Use JWT token authentication with devise
 gem 'bcrypt', '~> 3.1.7'                    # Use ActiveModel has_secure_password
 gem 'graphql'
+gem 'graphql-errors'
 gem 'rack-cors'
 # gem 'graphiql-rails', group: :development
 
@@ -37,10 +38,24 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+# gem 'env'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'                        # craate a .env file to set local environment variables
+  gem 'awesome_print'                       # better console ouput for objects -> ap object.inspect
+  gem 'factory_bot_rails'                   # model mocks with factory bot
+  gem 'rspec-rails', '~> 3.8'               # used testframework
+end
+
+
+group :test do
+  gem 'database_cleaner', '~> 1.6'
+  gem 'faker', '~> 1.8'
+  gem 'shoulda-matchers', '4.0.0.rc1'
+  gem 'rails-controller-testing' 
+  gem 'simplecov', require: false
 end
 
 group :development do
