@@ -76,12 +76,18 @@ The app uses [Puma](https://github.com/puma/puma) as the web serber. It is a sim
 
 ### 7. Testing
 
-TBD: rspec?
+We are using the wonderful framework [rspec](https://github.com/rspec/rspec). The testsuit also uses [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails) for fixtures. 
+
+Run `rspec spec` 
 
 ### 8. Deployment
-The project runs on every webhoster with ruby installed. The current demo was deployed to an heroku dyno with a Postgresql database as the only resource.
+The project runs on every webhoster with ruby installed. The only dependency is a PostgreSQL database. Create a block `production:` in the`config/database.yml` for your connection.
+
+#### Heroku
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/zauberware/rails-devise-graphql)
+
+Choose the one click installer or push a clone of this repo to heroku by yourself. We added a `Profile` to the project and heroku run the `release:` statement after deploying a new version. Heroku will automatically set the db settings for your project, so there is nothing to do in `config/database.yml`.
 
 
 **Make sure all ENV vars are set and the database settings are valid.**
