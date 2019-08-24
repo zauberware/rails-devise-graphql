@@ -17,7 +17,7 @@ or
 clone the repo:
 
 ```sh
-git clone my-saas-backend https://github.com/zauberware/rails-devise-graphql
+git clone https://github.com/zauberware/rails-devise-graphql my-saas-backend
 cd my-saas-backend
 ```
 
