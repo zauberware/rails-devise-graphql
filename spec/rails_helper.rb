@@ -62,7 +62,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include RequestSpecHelper, type: :request
   config.include GraphqlSpecHelper
-  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.extend DeviseHelper, type: :controller
 end
 
