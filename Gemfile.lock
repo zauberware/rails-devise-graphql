@@ -139,7 +139,7 @@ GEM
       equatable (~> 0.6)
       tty-color (~> 0.5)
     pg (1.1.4)
-    puma (3.12.1)
+    puma (3.12.2)
     rack (2.0.8)
     rack-cors (1.0.3)
     rack-test (1.1.0)
@@ -266,7 +266,7 @@ DEPENDENCIES
   graphql-errors
   listen (>= 3.0.5, < 3.2)
   pg
-  puma (~> 3.11)
+  puma (~> 3.12)
   rack-cors
   rails (~> 6.0.2)
   rails-controller-testing
