@@ -109,6 +109,14 @@ If you need a frontend than have a look at this basic [Gatsby boilerplate](https
 ![zauberware technologies](https://github.com/zauberware/gatsby-starter-redux-saas/raw/master/static/website-preview.jpg)
 
 
+## What's missing?
+
+* Specs for devise lockable
+* Implementation for devise confirmable
+* Implementation for omniauthable
+
+
+Feel free to join development!
 
 ## Author
 
