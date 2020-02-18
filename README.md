@@ -92,6 +92,14 @@ Choose the one click installer or push a clone of this repo to heroku by yoursel
 
 **Make sure all ENV vars are set and the database settings are valid.**
 
+#### Bitbucket Pipelines
+If you want to use [bitbucket pipelines](https://bitbucket.org/product/de/features/pipelines) for CI you can use the sample file `bitbucket-pipelines.yml` in the project root.
+
+Make sure to set ENV vars `$HEROKU_API_KEY` and `$HEROKU_APP_NAME` in bitbuckets pipeline settings. (Will appear after enabling pipelines for your project.)
+
+The pipeline has 2 environments: staging and production. Staging pipline is getting triggered in `develop` branch. Production uses all `release-*` branches.
+
+
 ### 9. Frontend
 
 #### GatsbyJS

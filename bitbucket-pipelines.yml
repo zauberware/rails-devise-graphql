@@ -1,0 +1,59 @@
+# This is a sample build configuration for Ruby.
+# Check our guides at https://confluence.atlassian.com/x/8r-5Mw for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: ruby:2.5.3
+
+pipelines:    
+  branches:
+    develop:
+      - step:
+          name: Run tests
+          caches:
+            - bundler
+          script:
+            - export DATABASE_URL=postgresql://test_user:test_user_password@localhost/ci_test
+            - cp config/database.ci.yml config/database.yml
+            - bundle install --path vendor/bundle
+            - rake db:setup
+            - rake db:test:prepare
+            - bundle exec rspec spec
+          services:
+            - postgres
+      - step:
+          name: Deploy to Staging
+          deployment: staging
+          script:
+          - git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git develop:master
+  tags:
+    release-*:
+      - step:
+          name: Run tests
+          caches:
+            - bundler
+          script:
+            - export DATABASE_URL=postgresql://test_user:test_user_password@localhost/ci_test
+            - cp config/database.ci.yml config/database.yml
+            - bundle install --path vendor/bundle
+            - rake db:setup
+            - rake db:test:prepare
+            - bundle exec rspec spec
+          services:
+            - postgres
+      - step:
+          name: Deploy to Production
+          deployment: production
+          script:
+          - git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+
+definitions:
+  caches:
+    bundler: vendor/bundle
+  services: 
+    postgres: 
+      image: postgres 
+      environment: 
+        POSTGRES_DB: ci_test 
+        POSTGRES_USER: test_user 
+        POSTGRES_PASSWORD: test_user_password
