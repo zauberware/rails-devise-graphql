@@ -4,9 +4,10 @@ This is a boilerplate to build your next SaaS product. It's a RubyOnRails 6 API 
 
 ## Versions
 
-- Tested with ruby version `2.4.x`
-- Rails version `~>5.2.3`
-- Postgresql Server
+- Current ruby version `2.6.x`
+- Bundler version `2.1.4`
+- Rails version `6.0.X`
+- Postgresql Server as db connector
 
 ## Quick start
 
@@ -63,7 +64,6 @@ The app uses [devise](https://github.com/plataformatec/devise)'s logic for authe
 
 ### 3. JSON Web Token
 [devise-jwt](https://github.com/waiting-for-dev/devise-jwt) is a devise extension which uses JWT tokens for user authentication. It follows [secure by default](https://en.wikipedia.org/wiki/Secure_by_default) principle.
-
 
 ### 4. GraphQL
 [graphql-ruby](https://github.com/rmosolgo/graphql-ruby) is a Ruby implementation of GraphQL. Sadly it's not 100% open source, but with the free version allows you amazing things to do. See the [Getting Started Guide](https://graphql-ruby.org/) and the current implementations in this project under `app/graphql/`.

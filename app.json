@@ -1,6 +1,6 @@
 {
   "name": "Rails Devise GraphQL",
-  "description": "This is a boilerplate to build your next Saas product. It's a RubyOnRails 5 API only backend with Authentication and GrpahQL API.",
+  "description": "This is a boilerplate to build your next Saas product. It's a RubyOnRails 6 API only backend with Authentication and GrpahQL API.",
   "keywords": [
     "saas",
     "saas-boilerplate",
@@ -38,6 +38,22 @@
     "DEVISE_JWT_SECRET_KEY": {
       "description": "A secret key for verifying the integrity of signed JWT tokens.",
       "generator": "secret"
+    },
+    "ADMIN_EMAIL": {
+      "description": "Admin default login.",
+      "value": "demo@zauberware.com"
+    },
+    "ADMIN_PASSWORD": {
+      "description": "Admin default password.",
+      "value": "demo123"
+    },
+    "ADMIN_FIRST_NAME": {
+      "description": "Admin default firstname.",
+      "value": "John"
+    },
+    "ADMIN_LAST_NAME": {
+      "description": "Admin default lastname.",
+      "value": "Doe"
     }
   },
   "image": "heroku/ruby",
