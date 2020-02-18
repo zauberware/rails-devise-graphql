@@ -30,3 +30,5 @@ coverage
 
 .env
 .env.*
+
+dump.rdb
