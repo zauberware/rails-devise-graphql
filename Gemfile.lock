@@ -139,7 +139,7 @@ GEM
       equatable (~> 0.6)
       tty-color (~> 0.5)
     pg (1.1.4)
-    puma (3.12.2)
+    puma (3.12.4)
     rack (2.0.8)
     rack-cors (1.0.5)
       rack (>= 1.6.0)
