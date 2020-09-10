@@ -1,10 +1,13 @@
-class Resolvers::Me < GraphQL::Schema::Resolver
-  
-  type Types::UserType, null: true
-  description 'Returns the current user'
+# frozen_string_literal: true
 
-  def resolve
-    context[:current_user]
+module Resolvers
+  # Get current user object
+  class Me < GraphQL::Schema::Resolver
+    type Types::UserType, null: true
+    description 'Returns the current user'
+
+    def resolve
+      context[:current_user]
+    end
   end
-
 end

@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 module Types
+  # Loads mutations into schema
+  # Include ither mutations here
   class MutationType < Types::BaseObject
-    
     # Authentication
     field :login, mutation: Mutations::User::Login
     field :token_login, mutation: Mutations::User::TokenLogin
@@ -11,7 +14,5 @@ module Types
     field :send_reset_password_instructions, mutation: Mutations::User::SendResetPasswordInstructions
     field :unlock, mutation: Mutations::User::Unlock
     field :resend_unlock_instructions, mutation: Mutations::User::ResendUnlockInstructions
-
   end
 end
-  

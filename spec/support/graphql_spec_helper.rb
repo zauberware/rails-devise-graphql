@@ -1,5 +1,6 @@
-module GraphqlSpecHelper
+# frozen_string_literal: true
 
+module GraphqlSpecHelper
   def graphql!
     GraphqlSchema.execute(
       @query,
@@ -19,5 +20,4 @@ module GraphqlSpecHelper
   def prepare_query(query)
     @query = query
   end
-
 end
