@@ -13,6 +13,7 @@ AllCops:
         - "app/helpers/ui_helper*"
         - "spec/spec_helper*"
         - "spec/rails_helper*"
+        - Gemfile*
 Metrics/MethodLength:
     Max: 15
 Style/MethodCallWithoutArgsParentheses:
