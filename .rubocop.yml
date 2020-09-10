@@ -1,0 +1,34 @@
+require:
+    - rubocop-performance
+    - rubocop-rails
+    - rubocop-rspec
+AllCops:
+    TargetRubyVersion: 2.6
+    NewCops: enable
+    Exclude:
+        - "db/**/*"
+        - "script/**/*"
+        - "bin/**/*"
+        - "vendor/**/*"
+        - "app/helpers/ui_helper*"
+        - "spec/spec_helper*"
+        - "spec/rails_helper*"
+Metrics/MethodLength:
+    Max: 15
+Style/MethodCallWithoutArgsParentheses:
+    Enabled: false
+Metrics/BlockLength:
+    Exclude:
+        - "config/**/*"
+        - "spec/**/*"
+Layout/LineLength:
+    Exclude:
+        - "config/**/*"
+RSpec/MultipleExpectations:
+    Enabled: false
+RSpec/InstanceVariable:
+    Enabled: false
+RSpec/UnspecifiedException:
+    Enabled: false
+RSpec/ExampleLength:
+    Max: 10

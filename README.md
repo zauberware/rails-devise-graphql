@@ -48,7 +48,7 @@ Run the development server:
 rails s
 ```
 
-While this is an API-only application you will not be able to access any routes via browser. Download a GraphQL client like [GraphiQL](https://github.com/graphql/graphiql) or others. 
+While this is an API-only application you will not be able to access any routes via browser. Download a GraphQL client like [GraphiQL](https://github.com/graphql/graphiql) or others.
 
 Point the GraphQL IDE to `http://0.0.0.0:3000/graphql`
 
@@ -76,11 +76,16 @@ The app uses [Puma](https://github.com/puma/puma) as the web serber. It is a sim
 
 ### 7. Testing
 
-We are using the wonderful framework [rspec](https://github.com/rspec/rspec). The testsuit also uses [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails) for fixtures. 
+We are using the wonderful framework [rspec](https://github.com/rspec/rspec). The testsuit also uses [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails) for fixtures.
 
-Run `rspec spec` 
+Run `rspec spec`
 
-### 8. Deployment
+### 8. Linter with Rubocop
+
+We are using the wonderful [rubocop](https://github.com/rubocop-hq/rubocop-rails) to lint and autofix the code. Install the rubocop VSCode extension to get best experience during development.
+
+
+### 9. Deployment
 The project runs on every webhoster with ruby installed. The only dependency is a PostgreSQL database. Create a block `production:` in the`config/database.yml` for your connection.
 
 #### Heroku
@@ -120,7 +125,7 @@ Feel free to join development!
 
 ## Author
 
-__Script:__ <https://github.com/zauberware/rails-devise-graphql>  
-__Author website:__ [https://www.zauberware.com](https://www.zauberware.com)    
+__Script:__ <https://github.com/zauberware/rails-devise-graphql>
+__Author website:__ [https://www.zauberware.com](https://www.zauberware.com)
 
 ![zauberware technologies](https://avatars3.githubusercontent.com/u/1753330?s=200&v=4)
