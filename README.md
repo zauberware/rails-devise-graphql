@@ -116,9 +116,7 @@ If you need a frontend than have a look at this basic [Gatsby boilerplate](https
 
 ## What's missing?
 
-* Specs for devise lockable
-* Implementation for devise confirmable
-* Implementation for omniauthable
+* We want to move to https://github.com/o2web/graphql-auth
 
 
 Feel free to join development!
