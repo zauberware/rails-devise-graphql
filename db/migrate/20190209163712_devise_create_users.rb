@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class DeviseCreateUsers < ActiveRecord::Migration[5.2]
+class DeviseCreateUsers < ActiveRecord::Migration[6.0]
   def change
-    create_table :users do |t|
+    create_table :users, id: :uuid do |t|
 
       ## General
       t.string   'first_name',     null: false, default: ''
@@ -37,8 +37,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string   :unlock_token # Only if unlock strategy is :email or :both
       t.datetime :locked_at
 
-      ## JTI for JWT auth
-      t.string   :jti,                     null: false
+      ## Refresh token for JWT auth
+      t.string   :refresh_token
 
       # role attributes (used as enum in user model)
       t.integer  :role, default: 0, null: false
@@ -50,7 +50,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
     add_index :users, :reset_password_token, unique: true
     add_index :users, :confirmation_token,   unique: true
     add_index :users, :unlock_token,         unique: true
-    add_index 'users', ['jti'], name: 'index_users_on_jti', unique: true, using: :btree
+    add_index 'users', ['refresh_token'], name: 'index_users_on_refresh_token', unique: true, using: :btree
 
   end
 end
