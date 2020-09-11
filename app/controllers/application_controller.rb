@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Base controlller for application
 class ApplicationController < ActionController::Base
   force_ssl if: :ssl_configured?
 

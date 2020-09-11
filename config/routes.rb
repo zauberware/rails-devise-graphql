@@ -8,5 +8,4 @@ Rails.application.routes.draw do
 
   # Just a blank root path
   root 'pages#blank'
-
 end

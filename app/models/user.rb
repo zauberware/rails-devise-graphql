@@ -2,7 +2,6 @@
 
 # User model to access application
 class User < ApplicationRecord
-
   # Include default devise modules. Others available are:
   # :confirmable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
@@ -35,7 +34,7 @@ class User < ApplicationRecord
     return 'warning' if role == 'admin'
     return 'danger' if role == 'superadmin'
 
-    return 'primary'
+    'primary'
   end
 
   private
@@ -45,13 +44,16 @@ class User < ApplicationRecord
   end
 
   # :nocov:
+  # rubocop:disable Metrics/BlockLength
   rails_admin do
     weight 10
     navigation_icon 'fa fa-user-circle'
 
     configure :role do
       pretty_value do # used in list view columns and show views, defaults to formatted_value for non-association fields
-        bindings[:view].content_tag(:span, User.human_attribute_name(value), class: "label label-#{bindings[:object].status_color}")
+        bindings[:view].tag.span(
+          User.human_attribute_name(value), class: "label label-#{bindings[:object].status_color}"
+        )
       end
       export_value do
         User.human_attribute_name(value)
@@ -60,7 +62,7 @@ class User < ApplicationRecord
 
     configure :email do
       pretty_value do
-        bindings[:view].link_to(value, 'mailto:' + value)
+        bindings[:view].link_to(value, "mailto:#{value}")
       end
       export_value do
         value
@@ -94,5 +96,6 @@ class User < ApplicationRecord
       field :last_sign_in_at
     end
   end
+  # rubocop:enable Metrics/BlockLength
   # :nocov:
 end

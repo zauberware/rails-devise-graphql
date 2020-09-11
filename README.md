@@ -99,6 +99,8 @@ Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the d
 ### 9. Abilities with CanCanCan
 [CanCanCan](https://github.com/CanCanCommunity/cancancan) is an authorization library for Ruby and Ruby on Rails which restricts what resources a given user is allowed to access. We combine this gem with a `role` field defined on user model.
 
+Start defining your abilities under `app/models/aility.rb`.
+
 ### 10. Rails Admin
 To access the data of your application you can access the [rails_admin](https://github.com/sferik/rails_admin) dashboard under route `/admin`. It's currently only allowed for users with role superadmin.
 

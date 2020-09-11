@@ -42,8 +42,5 @@ module RailsDeviseGraphql
     # Skip views, helpers and assets when generating a new resource.
 
     config.time_zone = 'Berlin'
-
-
-
   end
 end
