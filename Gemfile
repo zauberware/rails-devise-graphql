@@ -15,8 +15,12 @@ gem 'bcrypt', '~> 3.1.7'                    # Use ActiveModel has_secure_passwor
 gem 'devise'                                # Use devise as authentication module
 gem 'graphql'
 gem 'graphql-auth', git: 'git@github.com:simonfranzen/graphql-auth.git', branch: 'rails6'
-gem 'graphql-errors'
-gem 'rack-cors'
+gem 'graphql-errors'                        # GrapqhQL error handling
+gem 'rack-cors'                             # Rack CORS settings
+gem 'rails_admin', '~> 2.0.2'               # Admin interface
+gem 'cancancan'                             # Defining abilities
+gem 'image_processing', '~> 1.2'            # Image processing
+gem 'mini_magick'                           # Image manipulation with rmagick
 
 # gem 'graphiql-rails', group: :development
 
@@ -61,6 +65,7 @@ group :test do
 end
 
 group :development do
+  gem 'annotate'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'rubocop-performance'                 # speed up rubocop

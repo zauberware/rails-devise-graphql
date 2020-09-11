@@ -1,0 +1,13 @@
+@import "_vars";
+
+.authWrapper{
+  width: 100%;
+  max-width: 420px;
+  margin: 100px auto;
+  padding: 20px 30px;
+  border-radius: 6px;
+  background-color: white;
+  text-align: center;
+  border: 1px solid $color--border;
+  box-shadow: 1px 1px 3px rgba(0,0,0,.1);
+}
