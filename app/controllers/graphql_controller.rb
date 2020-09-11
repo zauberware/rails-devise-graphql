@@ -2,10 +2,11 @@
 
 # GraphQL API entry point
 class GraphqlController < ApplicationController
+  include Graphql::AuthHelper
+
   # Executes the graphql request
   def execute
     query, variables, operation_name = read_query_params()
-    context = set_context()
     result = GraphqlSchema.execute(
       query,
       variables: variables,
@@ -27,13 +28,6 @@ class GraphqlController < ApplicationController
       ensure_hash(params[:variables]),
       params[:operationName]
     ]
-  end
-
-  def set_context
-    {
-      current_user: current_user
-      # login: method(:sign_in)
-    }
   end
 
   # Handle form data, JSON body, or a blank value

@@ -8,8 +8,8 @@ FactoryBot.define do
     password { 'password' }
     password_confirmation { 'password' }
 
-    trait :customer do
-      role { :customer }
+    trait :user do
+      role { :user }
     end
 
     trait :admin do

@@ -1,3 +1,14 @@
+GIT
+  remote: git@github.com:simonfranzen/graphql-auth.git
+  revision: 087b1d8f30052a0b62654e6975e9f8e2b8d8cee7
+  branch: rails6
+  specs:
+    graphql-auth (0.7.1)
+      devise (~> 4.6, >= 4.6.2)
+      graphql (~> 1.9, >= 1.9.6)
+      jwt (~> 2.1)
+      rails (~> 6.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -72,25 +83,12 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-jwt (0.5.9)
-      devise (~> 4.0)
-      warden-jwt_auth (~> 0.3.6)
     diff-lcs (1.3)
     docile (1.3.2)
     dotenv (2.7.2)
     dotenv-rails (2.7.2)
       dotenv (= 2.7.2)
       railties (>= 3.2, < 6.1)
-    dry-auto_inject (0.6.1)
-      dry-container (>= 0.3.4)
-    dry-configurable (0.8.3)
-      concurrent-ruby (~> 1.0)
-      dry-core (~> 0.4, >= 0.4.7)
-    dry-container (0.7.1)
-      concurrent-ruby (~> 1.0)
-      dry-configurable (~> 0.1, >= 0.1.3)
-    dry-core (0.4.7)
-      concurrent-ruby (~> 1.0)
     equatable (0.6.0)
     erubi (1.9.0)
     factory_bot (5.0.2)
@@ -266,11 +264,6 @@ GEM
     unicode_utils (1.4.0)
     warden (1.2.8)
       rack (>= 2.0.6)
-    warden-jwt_auth (0.3.6)
-      dry-auto_inject (~> 0.6)
-      dry-configurable (~> 0.8)
-      jwt (~> 2.1)
-      warden (~> 1.2)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -286,11 +279,11 @@ DEPENDENCIES
   byebug
   database_cleaner (~> 1.6)
   devise
-  devise-jwt (~> 0.5.8)
   dotenv-rails
   factory_bot_rails
   faker (~> 1.8)
   graphql
+  graphql-auth!
   graphql-errors
   listen (>= 3.0.5, < 3.2)
   pg
@@ -299,6 +292,7 @@ DEPENDENCIES
   rails (~> 6.0.3)
   rails-controller-testing
   rspec-rails (~> 3.8)
+  rubocop
   rubocop-performance
   rubocop-rails
   rubocop-rspec

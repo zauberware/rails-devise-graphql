@@ -8,50 +8,11 @@ RSpec.describe GraphqlController, type: :controller do
   describe 'execute' do
     let(:current_user) { @current_user }
 
-    it 'responds with a valid graphql response' do
-      post :execute, params: { 'query' => "{\n  me {\n    email\n  }\n}" }
-      response_body = JSON.parse(response.body)
-      expect(response_body).to eq(
-        { 'data' => { 'me' => { 'email' => current_user.email } } }
-      )
-    end
-
     context 'when wrong query params given' do
       it 'returns with errors' do
         post :execute, params: { 'query' => "{\n  wrong {\n    email\n  }\n}" }
         response_body = JSON.parse(response.body)
         expect(response_body['errors']).not_to be nil
-      end
-    end
-
-    # TODO: better vairales test
-    context 'when using String variables' do
-      it 'returns with valid graphql response' do
-        post :execute, params: { 'query' => "{\n  me {\n    email\n  }\n}", 'variables' => '{ "Test": "Me" }' }
-        response_body = JSON.parse(response.body)
-        expect(response_body).to eq(
-          { 'data' => { 'me' => { 'email' => current_user.email } } }
-        )
-      end
-    end
-
-    context 'when using empty String variables' do
-      it 'returns with valid graphql response' do
-        post :execute, params: { 'query' => "{\n  me {\n    email\n  }\n}", 'variables' => '' }
-        response_body = JSON.parse(response.body)
-        expect(response_body).to eq(
-          { 'data' => { 'me' => { 'email' => current_user.email } } }
-        )
-      end
-    end
-
-    context 'when using Hash variables' do
-      it 'returns with valid graphql response' do
-        post :execute, params: { 'query' => "{\n  me {\n    email\n  }\n}", 'variables' => { 'Test' => 'Me' } }
-        response_body = JSON.parse(response.body)
-        expect(response_body).to eq(
-          { 'data' => { 'me' => { 'email' => current_user.email } } }
-        )
       end
     end
 

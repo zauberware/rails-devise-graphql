@@ -2,33 +2,27 @@
 
 # User model to access application
 class User < ApplicationRecord
-  include Devise::JWT::RevocationStrategies::JTIMatcher
-  include Tokenizable
+  # include Devise::JWT::RevocationStrategies::JTIMatcher
+  # include Tokenizable
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :confirmable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
          :registerable,
          :recoverable,
          :devise,
          :validatable,
-         :trackable,
-         :jwt_authenticatable,
-         jwt_revocation_strategy: self
+         :lockable,
+         :trackable
 
   # add new roles to the end
-  enum role: { customer: 0, admin: 1 }
-
-  # - RELATIONS
-  # -
+  enum role: { user: 0, admin: 1 }
 
   # - VALIDATIONS
   validates :email, presence: true
   validates :email, length: { maximum: 255 }
   validates :email, format: { with: Regex::Email::VALIDATE }
-  validates :first_name, presence: true
   validates :first_name, length: { maximum: 255 }
-  validates :last_name, presence: true
   validates :last_name, length: { maximum: 255 }
 
   # - CALLBACKS
@@ -47,6 +41,6 @@ class User < ApplicationRecord
   private
 
   def setup_new_user
-    self.role ||= :customer
+    self.role ||= :user
   end
 end

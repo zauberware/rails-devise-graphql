@@ -13,10 +13,11 @@ gem 'pg'
 
 gem 'bcrypt', '~> 3.1.7'                    # Use ActiveModel has_secure_password
 gem 'devise'                                # Use devise as authentication module
-gem 'devise-jwt', '~> 0.5.8'                # Use JWT token authentication with devise
 gem 'graphql'
+gem 'graphql-auth', git: 'git@github.com:simonfranzen/graphql-auth.git', branch: 'rails6'
 gem 'graphql-errors'
 gem 'rack-cors'
+
 # gem 'graphiql-rails', group: :development
 
 # Use Puma as the app server
@@ -65,6 +66,7 @@ group :development do
   gem 'rubocop-performance'                 # speed up rubocop
   gem 'rubocop-rails'                       # rubocop for rails
   gem 'rubocop-rspec'                       # rubocop for rspec
+  gem 'rubocop'                             # rubocop for linting ruby code
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end

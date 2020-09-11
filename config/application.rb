@@ -24,7 +24,9 @@ module RailsDeviseGraphql
   # Application entry point
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.2
+    config.load_defaults 6.0
+
+    config.autoloader = :classic
 
     config.autoload_paths << Rails.root.join('lib')
     config.eager_load_paths << Rails.root.join('lib')

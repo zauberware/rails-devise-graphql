@@ -5,14 +5,12 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   it 'has a valid factory' do
     expect(create(:user)).to be_valid
-    expect(create(:user, :customer)).to be_valid
+    expect(create(:user, :user)).to be_valid
     expect(create(:user, :admin)).to be_valid
   end
 
   # Validations
-  it { is_expected.to validate_presence_of(:first_name) }
   it { is_expected.to validate_length_of(:first_name).is_at_most(255) }
-  it { is_expected.to validate_presence_of(:last_name) }
   it { is_expected.to validate_length_of(:last_name).is_at_most(255) }
   it { is_expected.to validate_presence_of(:email) }
   it { is_expected.to validate_length_of(:email).is_at_most(255) }
@@ -26,8 +24,8 @@ RSpec.describe User, type: :model do
   describe '#setup_new_user' do
     let(:user) { build(:user) }
 
-    it 'sets role to customer' do
-      expect(user.role).to eq 'customer'
+    it 'sets role to user' do
+      expect(user.role).to eq 'user'
     end
   end
 

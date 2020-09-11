@@ -9,6 +9,7 @@ require File.expand_path('../config/environment', __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require "rspec/rails"
 require "shoulda/matchers"
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -61,7 +62,6 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
   config.include RequestSpecHelper, type: :request
-  config.include GraphqlSpecHelper
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.extend DeviseHelper, type: :controller
 end

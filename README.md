@@ -63,7 +63,7 @@ The app uses a postgresql database. It implements the connector with the gem `pg
 The app uses [devise](https://github.com/plataformatec/devise)'s logic for authentication. Emails are currently disabled in the environment settings.
 
 ### 3. JSON Web Token
-[devise-jwt](https://github.com/waiting-for-dev/devise-jwt) is a devise extension which uses JWT tokens for user authentication. It follows [secure by default](https://en.wikipedia.org/wiki/Secure_by_default) principle.
+[graphql-auth](https://github.com/o2web/graphql-auth) is a graphql/devise extension which uses JWT tokens for user authentication. It follows [secure by default](https://en.wikipedia.org/wiki/Secure_by_default) principle.
 
 ### 4. GraphQL
 [graphql-ruby](https://github.com/rmosolgo/graphql-ruby) is a Ruby implementation of GraphQL. Sadly it's not 100% open source, but with the free version allows you amazing things to do. See the [Getting Started Guide](https://graphql-ruby.org/) and the current implementations in this project under `app/graphql/`.
