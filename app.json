@@ -1,6 +1,6 @@
 {
-  "name": "Rails Devise GraphQL",
-  "description": "This is a boilerplate to build your next Saas product. It's a RubyOnRails 6 API only backend with Authentication and GrpahQL API.",
+  "name": "Rails 6 boilerplate with devise, JWT, graphQL, CanCanCan and RailsAdmin",
+  "description": "This is a boilerplate to build your next SaaS product. It's a RubyOnRails 6 backend with Authentication and GraphQL API. It works nicely together with clients made with React.js & React.Native or any other frontend which implements the JSON Web Tokens philosophy.",
   "keywords": [
     "saas",
     "saas-boilerplate",
@@ -15,7 +15,7 @@
     "api-only",
     "gatsby-backend"
   ],
-  "website": "https://gatsby-redux.zauberware.com/",
+  "website": "https://www.zauberware.com/",
   "repository": "https://github.com/zauberware/rails-devise-graphql",
   "logo": "https://avatars3.githubusercontent.com/u/1753330?s=200&v=4",
   "success_url": "/",
