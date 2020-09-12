@@ -98,6 +98,8 @@ The app uses UUID as ids for active record entries in the database. If you want 
 ### 8. Automatic model annotation
 Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema. See [annotate_models gem](https://github.com/ctran/annotate_models).
 
+Run `$ annotate` in project root folder to update annotations.
+
 ### 9. Abilities with CanCanCan
 [CanCanCan](https://github.com/CanCanCommunity/cancancan) is an authorization library for Ruby and Ruby on Rails which restricts what resources a given user is allowed to access. We combine this gem with a `role` field defined on user model.
 
