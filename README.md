@@ -76,7 +76,7 @@ Point the GraphQL IDE to `http://0.0.0.0:3000/graphql`
 ## What's included?
 
 ### 1. Database
-The app uses a postgresql database. It implements the connector with the gem `pg`. The app already includes a `User` model with basic setup.
+The app uses a postgresql database. It implements the connector with the gem `pg`. The app already includes a `User` and a `Account` model with basic setup. We see an `Account` as a company with it's users. We did **not** add multi-tenancy to this app. If you want to do it by yourself check out the [apartment](https://github.com/influitive/apartment) gem.
 
 ### 2. Authentication
 The app uses [devise](https://github.com/plataformatec/devise)'s logic for authentication. For graphQL API we use the JWT token, but to access the rails_admin backend we use standard devise views, but registration is excluded.
