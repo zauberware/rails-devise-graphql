@@ -1,4 +1,7 @@
-module HttpAuth  
+# frozen_string_literal: true
+
+# Injects http authentication to a controller.
+module HttpAuth
   extend ActiveSupport::Concern
 
   included do
@@ -6,6 +9,7 @@ module HttpAuth
   end
 
   protected
+
   def http_authenticate
     return true unless ENV['IS_HTTP_AUTH_PROTECTED'] == 'true'
 

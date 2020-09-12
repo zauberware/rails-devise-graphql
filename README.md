@@ -68,7 +68,7 @@ While this is an API-only application you will not be able to access any routes 
 
 Point the GraphQL IDE to `http://0.0.0.0:3000/graphql`
 
-**Note:** Make sure that the `.env` file is included in the root of your project and you have defined `CLIENT_URL` and `DEVISE_JWT_SECRET_KEY`. You can try out the [Demo frontend](https://github.com/zauberware/gatsby-starter-redux-saas) or you implement the actions in any other client. Read more about the JSON Web Token [this](https://github.com/zauberware/rails-devise-graphql). There are plenty of packages available.
+**Note:** Make sure that the `.env` file is included in the root of your project and you have defined `CLIENT_URL` and `DEVISE_SECRET_KEY`. You can try out the [Demo frontend](https://github.com/zauberware/gatsby-starter-redux-saas) or you implement the actions in any other client. Read more about the JSON Web Token [this](https://github.com/zauberware/rails-devise-graphql). There are plenty of packages available.
 
 ## What's included?
 
@@ -114,7 +114,7 @@ Change rails_admin settins under `config/initializers/rails_admin.rb`.
 This app has the default language `en` and already set a secondary language `de`. We included the [rails-i18n](https://github.com/svenfuchs/rails-i18n) to support other languages out of the box. Add more languages under `config/initializers/locale.rb`.
 
 #### Setting locale
-To switch locale just append `?locale=de` at the end of your url.
+To switch locale just append `?locale=de` at the end of your url. If no `locale` param was set it uses browser default language (request env `HTTP_ACCEPT_LANGUAGE`). If this is unknown it takes the default language of the rails app.
 
 #### Devise
 For devise we use [devise-i18n](https://github.com/tigrish/devise-i18n) to support other languages.

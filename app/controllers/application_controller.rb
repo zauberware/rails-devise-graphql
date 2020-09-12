@@ -3,8 +3,7 @@
 # Base controlller for application
 class ApplicationController < ActionController::Base
   include HttpAuth
-
-  force_ssl if: :ssl_configured?
+  include LocaleWrapper
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
@@ -12,13 +11,6 @@ class ApplicationController < ActionController::Base
       format.html { redirect_to '/', alert: exception.message }
       format.json { render json: { errors: { permission: [exception.message] } }, status: 403 }
     end
-  end
-
-  # setting locale from URL parameter
-  around_action :switch_locale
-  def switch_locale(&action)
-    locale = params[:locale] || I18n.default_locale
-    I18n.with_locale(locale, &action)
   end
 
   protected
@@ -31,10 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-
-  def ssl_configured?
-    Rails.env.production?
-  end
 
   def after_sign_in_path_for(resource)
     if resource.superadmin? || resource.admin?

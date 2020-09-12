@@ -72,3 +72,5 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+RSpec::Expectations.configuration.on_potential_false_positives = :nothing

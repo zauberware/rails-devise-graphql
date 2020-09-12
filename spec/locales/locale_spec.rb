@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # testing all locale files
 Dir.glob('config/locales/**/*.yml') do |locale_file|
   RSpec.describe "Locale file #{locale_file}" do

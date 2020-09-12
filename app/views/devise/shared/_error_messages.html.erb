@@ -13,3 +13,8 @@
     </ul>
   </div>
 <% end %>
+
+<% flash.each do |key, value| %>
+  <% key = (key == 'alert' || key == 'error') ? 'error' : 'info' %>
+  <%= content_tag(:div, value, class: "flash flash--#{key}") %>
+<% end %>

@@ -80,8 +80,30 @@ h1,h2,h3,h4,h5,h6{
   color: $gray;
 }
 
+.field{
+  text-align: left;
+}
+
 .logo-wrapper{
   background-color: white;
   display: inline-block;
   padding: 15px 10px 10px 10px;
+}
+
+.flash{
+  padding: 10px;
+  text-align: center;
+  background: $brand-info;
+  margin: 10px 0;
+  color: white;
+  border-radius: 3px;
+  font-weight: 700;
+
+  &--error{
+    background: $brand-danger;
+  }
+
+  &--alert{
+    background: $brand-warning;
+  }
 }
