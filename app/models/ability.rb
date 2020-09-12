@@ -12,10 +12,9 @@ class Ability
     return if user.new_record?
 
     if user.superadmin?
-      can :access, :rails_admin # grant access to rails_admin
-    end
-
-    if user.admin? || user.superadmin?
+      can :access, :rails_admin         # grant access to rails_admin
+      can :manage, :all                 # admins can manage all objects
+    elsif user.admin?
       can :crud, User, account_id: user.account_id
     else
       can :read, User, account_id: user.account_id
