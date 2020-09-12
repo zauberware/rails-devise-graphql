@@ -3,14 +3,17 @@
     <%= image_tag('logo.svg', width: '200px', alt: 'Logo' ) %>
   </div>
   <hr/>
-  <h2>Login</h2>
+  <h2><%= t('.sign_in') %></h2>
+
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'E-Mail' %>
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 
     <div class="field">
-      <%= f.password_field :password, autocomplete: "current-password", placeholder: 'Passwort' %>
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
     </div>
 
     <% if devise_mapping.rememberable? %>
@@ -21,9 +24,10 @@
     <% end %>
 
     <div class="actions">
-      <%= f.submit "Anmelden" %>
+      <%= f.submit t('.sign_in') %>
     </div>
   <% end %>
 
   <%= render "devise/shared/links" %>
+
 </div>
