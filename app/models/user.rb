@@ -60,7 +60,7 @@ class User < ApplicationRecord
   validates :last_name, length: { maximum: 255 }
 
   # - RELATIONS
-  belongs_to :account
+  belongs_to :account, counter_cache: true
 
   # - CALLBACKS
   after_initialize :setup_new_user, if: :new_record?
@@ -121,6 +121,7 @@ class User < ApplicationRecord
       field :email
       field :role
       field :last_sign_in_at
+      field :account
     end
 
     edit do
@@ -130,6 +131,7 @@ class User < ApplicationRecord
       field :password
       field :password_confirmation
       field :role
+      field :account
     end
 
     show do
@@ -139,6 +141,7 @@ class User < ApplicationRecord
       field :email
       field :role
       field :last_sign_in_at
+      field :account
     end
   end
   # rubocop:enable Metrics/BlockLength
