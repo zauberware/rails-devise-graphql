@@ -16,7 +16,7 @@ gem 'bcrypt', '~> 3.1.7'                    # Use ActiveModel has_secure_passwor
 gem 'devise'                                # Use devise as authentication module
 gem 'devise-i18n'                           # Install default translations
 gem 'graphql'                               # GraphQL as API
-gem 'graphql-auth', git: 'git@github.com:simonfranzen/graphql-auth.git', branch: 'rails6'
+gem 'graphql-auth', git: 'https://github.com/simonfranzen/graphql-auth.git', branch: 'rails6'
 gem 'graphql-errors'                        # GrapqhQL error handling
 gem 'rack-cors'                             # Rack CORS settings
 gem 'rails_admin', '~> 2.0.2'               # Admin interface

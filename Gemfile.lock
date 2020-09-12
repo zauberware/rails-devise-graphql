@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:simonfranzen/graphql-auth.git
+  remote: https://github.com/simonfranzen/graphql-auth.git
   revision: 087b1d8f30052a0b62654e6975e9f8e2b8d8cee7
   branch: rails6
   specs:
@@ -138,7 +138,7 @@ GEM
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
     json (2.3.1)
-    jwt (2.2.1)
+    jwt (2.2.2)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.1)
