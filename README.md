@@ -1,4 +1,10 @@
 # Rails 6 boilerplate with devise, JWT, graphQL, CanCanCan and RailsAdmin.
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/zauberware/rails-devise-graphql/graphs/commit-activity)
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/zauberware/rails-devise-graphql/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/Naereen/StrapDown.js.svg)](https://github.com/zauberware/rails-devise-graphql/releases/)
+![GitHub top language](https://img.shields.io/github/languages/top/zauberware/rails-devise-graphql)
+![GitHub issues](https://img.shields.io/github/issues/zauberware/rails-devise-graphql)
+
 
 This is a boilerplate to build your next SaaS product. It's a RubyOnRails 6 backend with Authentication and GraphQL API. It works nicely together with clients made with **React.js & React.Native** or any other frontend which implements the [JSON Web Tokens](https://jwt.io/introduction/) philosophy.
 
@@ -206,9 +212,15 @@ It also triggers pipeline while opening a PR.
 ## What's missing?
 Feel free to make feature requrest or join development!
 
+## Share this repo
+Help us to get more attention to this project:
+
+![Twitter URL](https://img.shields.io/twitter/url?label=Tweet%20about%20this%20project&style=social&url=https%3A%2F%2Fgithub.com%2Fzauberware%2Frails-devise-graphql)
+
 ## Author
 
 __Script:__ <https://github.com/zauberware/rails-devise-graphql>
+
 __Author website:__ [https://www.zauberware.com](https://www.zauberware.com)
 
 ![zauberware technologies](https://avatars3.githubusercontent.com/u/1753330?s=200&v=4)
