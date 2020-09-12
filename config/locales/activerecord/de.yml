@@ -1,4 +1,6 @@
 de:
+  attributes:
+    slug: Pfad
   activerecord:
     attributes:
       account:

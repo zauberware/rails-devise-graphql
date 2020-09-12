@@ -27,6 +27,7 @@ This boilerplate works like a charm with the following gemset:
 - mini_magick
 - puma
 - bootsnap
+- friendly_id
 
 
 ## 🚀 Quick start
@@ -141,7 +142,32 @@ Set user with `HTTP_AUTH_USER` and password with `HTTP_AUTH_PASSWORD`.
 
 We enable HTTP auth currently for all controllers. The `ApplicationController` class includes the concern `HttpAuth`. Feel free to change it.
 
-### 13. Testing
+### 13. Auto generated slugs
+To provider more user friendly urls for your frontend we are using [friendly_id](https://github.com/norman/friendly_id) to auto generate slugs for models. We have already implemented it for the `Account` model. For more configuration see `config/initializers/friendly_id.rb`.
+
+To create a new slug field for a model add a field `slug`:
+
+```sh
+$ rails g migration add_slug_to_resource slug:uniq
+$ bundle exec rake db:migrate
+```
+
+Edit your model file as the following:
+
+```ruby
+class Account < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+end
+```
+
+Replace tradinional `Account.find(params[:id])` with `Account.friendly.find(params[:id])`
+```ruby
+  account = Account.friendly.find(params[:id])
+```
+
+
+### 14. Testing
 
 We are using the wonderful framework [rspec](https://github.com/rspec/rspec). The testsuit also uses [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails) for fixtures.
 
@@ -165,11 +191,11 @@ Open test coverage results with
   $ open /coverage/index.html
 ```
 
-### 14. Linter with Rubocop
+### 15. Linter with Rubocop
 
 We are using the wonderful [rubocop](https://github.com/rubocop-hq/rubocop-rails) to lint and autofix the code. Install the rubocop VSCode extension to get best experience during development.
 
-### 15. Sending emails
+### 16. Sending emails
 Set your SMTP settings with these environment variables:
 - `SMTP_ADDRESS`
 - `SMTP_PORT`
@@ -185,7 +211,7 @@ Have a look at `config/environments/production.rb` where we set the `config.acti
 Set the email address for your `ApplicationMailer` and devise emails with env var `DEVISE_MAILER_FROM`.
 
 
-### 16. Deployment
+### 17. Deployment
 The project runs on every webhoster with ruby installed. The only dependency is a PostgreSQL database. Create a block `production:` in the`config/database.yml` for your connection.
 
 #### Heroku
@@ -206,7 +232,7 @@ The pipeline has 2 environments: staging and production. Staging pipline is gett
 It also triggers pipeline while opening a PR.
 
 ## What's missing?
-- Update and Delete mutation for admin of an account
+- Update and Delete mutations for admin of an account
 
 Feel free to make feature requrest or join development!
 

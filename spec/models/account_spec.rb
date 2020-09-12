@@ -6,9 +6,14 @@
 #
 #  id          :uuid             not null, primary key
 #  name        :string
+#  slug        :string
 #  users_count :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#
+# Indexes
+#
+#  index_accounts_on_slug  (slug) UNIQUE
 #
 require 'rails_helper'
 

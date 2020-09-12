@@ -1,4 +1,6 @@
 en:
+  attributes:
+    slug: Slug
   activerecord:
     attributes:
       account:
@@ -28,7 +30,7 @@ en:
         unconfirmed_email: Unconfirmed email
         unlock_token: Unlock token
         updated_at: Updated at
-        first_name: sFirstname
+        first_name: Firstname
         last_name: Lastname
         role: Role
     models:

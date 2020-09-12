@@ -6,14 +6,35 @@
 #
 #  id          :uuid             not null, primary key
 #  name        :string
+#  slug        :string
 #  users_count :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
+# Indexes
+#
+#  index_accounts_on_slug  (slug) UNIQUE
+#
 class Account < ApplicationRecord
+  extend FriendlyId
+
+  # - EXTENSIONS
+  friendly_id :name, use: :slugged
+
+  # - VALIDATIONS
   validates :name, presence: true
   validates :name, length: { maximum: 255 }
+  validates :slug, length: { maximum: 255 }
+
+  # - RELATIONS
   has_many :users, dependent: :destroy
+
+
+  # override friendly id checker for categories
+  def should_generate_new_friendly_id?
+    (slug.nil? || slug.blank?) || (name_changed? && !slug_changed?)
+  end
+
 
   # :nocov:
   rails_admin do
@@ -23,16 +44,19 @@ class Account < ApplicationRecord
     list do
       field :id
       field :name
+      field :slug
       field :users_count
     end
 
     edit do
       field :name
+      field :slug
     end
 
     show do
       field :id
       field :name
+      field :slug
       field :users_count
     end
   end
