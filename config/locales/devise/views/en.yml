@@ -1,34 +1,4 @@
 en:
-  activerecord:
-    attributes:
-      user:
-        confirmation_sent_at: Confirmation sent at
-        confirmation_token: Confirmation token
-        confirmed_at: Confirmed at
-        created_at: Created at
-        current_password: Current password
-        current_sign_in_at: Current sign in at
-        current_sign_in_ip: Current sign in IP
-        email: Email
-        encrypted_password: Encrypted password
-        failed_attempts: Failed attempts
-        last_sign_in_at: Last sign in at
-        last_sign_in_ip: Last sign in IP
-        locked_at: Locked at
-        password: Password
-        password_confirmation: Password confirmation
-        remember_created_at: Remember created at
-        remember_me: Remember me
-        reset_password_sent_at: Reset password sent at
-        reset_password_token: Reset password token
-        sign_in_count: Sign in count
-        unconfirmed_email: Unconfirmed email
-        unlock_token: Unlock token
-        updated_at: Updated at
-    models:
-      user:
-        one: User
-        other: Users
   devise:
     confirmations:
       confirmed: Your email address has been successfully confirmed.
@@ -50,7 +20,7 @@ en:
       confirmation_instructions:
         action: Confirm my account
         greeting: Welcome %{recipient}!
-        instruction: 'You can confirm your account email through the link below:'
+        instruction: "You can confirm your account email through the link below:"
         subject: Confirmation instructions
       email_changed:
         greeting: Hello %{recipient}!
@@ -70,7 +40,7 @@ en:
       unlock_instructions:
         action: Unlock my account
         greeting: Hello %{recipient}!
-        instruction: 'Click the link below to unlock your account:'
+        instruction: "Click the link below to unlock your account:"
         message: Your account has been locked due to an excessive number of unsuccessful sign in attempts.
         subject: Unlock instructions
     omniauth_callbacks:
@@ -95,7 +65,7 @@ en:
       edit:
         are_you_sure: Are you sure?
         cancel_my_account: Cancel my account
-        currently_waiting_confirmation_for_email: 'Currently waiting confirmation for: %{email}'
+        currently_waiting_confirmation_for_email: "Currently waiting confirmation for: %{email}"
         leave_blank_if_you_don_t_want_to_change_it: leave blank if you don't want to change it
         title: Edit %{resource}
         unhappy: Unhappy?
@@ -134,13 +104,3 @@ en:
       send_instructions: You will receive an email with instructions for how to unlock your account in a few minutes.
       send_paranoid_instructions: If your account exists, you will receive an email with instructions for how to unlock it in a few minutes.
       unlocked: Your account has been unlocked successfully. Please sign in to continue.
-  errors:
-    messages:
-      already_confirmed: was already confirmed, please try signing in
-      confirmation_period_expired: needs to be confirmed within %{period}, please request a new one
-      expired: has expired, please request a new one
-      not_found: not found
-      not_locked: was not locked
-      not_saved:
-        one: '1 error prohibited this %{resource} from being saved:'
-        other: "%{count} errors prohibited this %{resource} from being saved:"

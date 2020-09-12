@@ -1,34 +1,4 @@
 de:
-  activerecord:
-    attributes:
-      user:
-        confirmation_sent_at: Bestätigung gesendet am
-        confirmation_token: Bestätigungs-Token
-        confirmed_at: Bestätigt am
-        created_at: Erstellt am
-        current_password: Bisheriges Passwort
-        current_sign_in_at: Aktuelle Anmeldung vom
-        current_sign_in_ip: IP der aktuellen Anmeldung
-        email: E-Mail
-        encrypted_password: Verschlüsseltes Passwort
-        failed_attempts: Fehlversuche
-        last_sign_in_at: Letzte Anmeldung am
-        last_sign_in_ip: IP der letzten Anmeldung
-        locked_at: Gesperrt am
-        password: Passwort
-        password_confirmation: Passwortbestätigung
-        remember_created_at: Angemeldet bleiben vom
-        remember_me: Angemeldet bleiben
-        reset_password_sent_at: Passwort-Zurücksetzen-E-Mail gesendet am
-        reset_password_token: Passwort-Zurücksetzen-Token
-        sign_in_count: Anzahl Anmeldungen
-        unconfirmed_email: Unbestätigte E-Mail-Adresse
-        unlock_token: Entsperrungs-Token
-        updated_at: Aktualisiert am
-    models:
-      user:
-        one: Benutzer
-        other: Benutzer
   devise:
     confirmations:
       confirmed: Ihre E-Mail-Adresse wurde erfolgreich bestätigt.
@@ -50,7 +20,7 @@ de:
       confirmation_instructions:
         action: Mein Konto bestätigen
         greeting: Willkommen %{recipient}!
-        instruction: 'Folgen Sie dem untenstehenden Link, um Ihr Konto zu bestätigen:'
+        instruction: "Folgen Sie dem untenstehenden Link, um Ihr Konto zu bestätigen:"
         subject: Anleitung zur Bestätigung Ihres Kontos
       email_changed:
         greeting: Hallo %{recipient}!
@@ -70,7 +40,7 @@ de:
       unlock_instructions:
         action: Mein Konto entsperren
         greeting: Hallo %{recipient}!
-        instruction: 'Folgen Sie dem untenstehenden Link, um Ihr Konto zu entsperren:'
+        instruction: "Folgen Sie dem untenstehenden Link, um Ihr Konto zu entsperren:"
         message: Ihr Konto wurde aufgrund einer großen Anzahl von fehlgeschlagenen Anmeldeversuchen gesperrt.
         subject: Anleitung für die Konto-Freischaltung
     omniauth_callbacks:
@@ -134,13 +104,3 @@ de:
       send_instructions: Sie erhalten in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie Ihr Konto entsperren können.
       send_paranoid_instructions: Falls Ihre E-Mail-Adresse in unserer Datenbank existiert, erhalten Sie in wenigen Minuten eine E-Mail, mit der Anleitung, wie Sie Ihr Konto entsperren können.
       unlocked: Ihr Konto wurde entsperrt. Bitte melden Sie sich an, um fortzufahren.
-  errors:
-    messages:
-      already_confirmed: wurde bereits bestätigt; bitte versuchen Sie, sich anzumelden
-      confirmation_period_expired: musste innerhalb von %{period} bestätigt werden, bitte neu anfordern.
-      expired: ist abgelaufen, bitte neu anfordern
-      not_found: nicht gefunden
-      not_locked: ist nicht gesperrt
-      not_saved:
-        one: "%{resource} konnte aufgrund eines Fehlers nicht gespeichert werden:"
-        other: "%{count} Fehler verhinderten das Speichern von %{resource}:"
