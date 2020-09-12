@@ -64,6 +64,7 @@ class User < ApplicationRecord
 
   # - CALLBACKS
   after_initialize :setup_new_user, if: :new_record?
+  before_validation :setup_account
 
   # return first and lastname
   def name
@@ -78,6 +79,10 @@ class User < ApplicationRecord
   end
 
   private
+
+  def setup_account
+    self.account = Account.create!(name: 'My company') if account.nil?
+  end
 
   def setup_new_user
     self.role ||= :user

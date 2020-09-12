@@ -8,9 +8,11 @@ module Types
 
     field :users, Types::UserType.connection_type, null: false
     def users(**_args)
-      ::User.accessible_by(current_ability)
+      ::User.accessible_by(current_ability).includes(:account)
     end
     field :user, resolver: Resolvers::User
+
+    field :account, resolver: Resolvers::Account
 
     def current_ability
       Ability.new(context[:current_user])
