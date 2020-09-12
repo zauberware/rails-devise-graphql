@@ -4,6 +4,9 @@
 class GraphqlController < ApplicationController
   include Graphql::AuthHelper
 
+  # disable forgery protection for API
+  skip_before_action :verify_authenticity_token
+
   # Executes the graphql request
   def execute
     query, variables, operation_name = read_query_params()
