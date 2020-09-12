@@ -167,8 +167,23 @@ Open test coverage results with
 
 We are using the wonderful [rubocop](https://github.com/rubocop-hq/rubocop-rails) to lint and autofix the code. Install the rubocop VSCode extension to get best experience during development.
 
+### 15. Sending emails
+Set your SMTP settings with these environment variables:
+- `SMTP_ADDRESS`
+- `SMTP_PORT`
+- `SMTP_DOMAIN`
+- `SMTP_USERNAME`
+- `SMTP_PASSWORD`
+- `SMTP_AUTH`
+- `SMTP_ENABLE_STARTTLS_AUTO`
 
-### 15. Deployment
+Have a look at `config/environments/production.rb` where we set the `config.action_mailer.smtp_settings`.
+
+#### FROM email
+Set the email address for your `ApplicationMailer` and devise emails with env var `DEVISE_MAILER_FROM`.
+
+
+### 16. Deployment
 The project runs on every webhoster with ruby installed. The only dependency is a PostgreSQL database. Create a block `production:` in the`config/database.yml` for your connection.
 
 #### Heroku
