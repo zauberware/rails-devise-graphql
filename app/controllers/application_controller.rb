@@ -2,6 +2,8 @@
 
 # Base controlller for application
 class ApplicationController < ActionController::Base
+  include HttpAuth
+
   force_ssl if: :ssl_configured?
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -10,6 +12,13 @@ class ApplicationController < ActionController::Base
       format.html { redirect_to '/', alert: exception.message }
       format.json { render json: { errors: { permission: [exception.message] } }, status: 403 }
     end
+  end
+
+  # setting locale from URL parameter
+  around_action :switch_locale
+  def switch_locale(&action)
+    locale = params[:locale] || I18n.default_locale
+    I18n.with_locale(locale, &action)
   end
 
   protected

@@ -8,3 +8,6 @@ ADMIN_FIRST_NAME=John
 DEVISE_JWT_SECRET_KEY=replace-this-key-with-a-secret
 DEVISE_SECRET_KEY_BASE=replace-this-key-with-a-secret
 DEVISE_MAILER_FROM=test@domain.com
+IS_HTTP_AUTH_PROTECTED=false
+HTTP_AUTH_USER=demo
+HTTP_AUTH_PASSWORD=demo1234

@@ -10,7 +10,7 @@ This is a boilerplate to build your next SaaS product. It's a RubyOnRails 6 back
 - Postgresql Server as db connector
 
 ## Dependencies
-This boilerplate works like a charm with the following gems:
+This boilerplate works like a charm with the following gemset:
 - pg
 - devise
 - graphql
@@ -60,7 +60,7 @@ rake db:seed
 
 Run the development server:
 
-```
+```sh
 rails s
 ```
 
@@ -77,6 +77,8 @@ The app uses a postgresql database. It implements the connector with the gem `pg
 
 ### 2. Authentication
 The app uses [devise](https://github.com/plataformatec/devise)'s logic for authentication. For graphQL API we use the JWT token, but to access the rails_admin backend we use standard devise views, but registration is excluded.
+
+Change devise settins under `config/initializers/devise.rb` and `config/initializers/graphql_auth.rb`.
 
 ### 3. JSON Web Token
 [graphql-auth](https://github.com/o2web/graphql-auth) is a graphql/devise extension which uses JWT tokens for user authentication. It follows [secure by default](https://en.wikipedia.org/wiki/Secure_by_default) principle.
@@ -102,11 +104,37 @@ Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the d
 Start defining your abilities under `app/models/aility.rb`.
 
 ### 10. Rails Admin
-To access the data of your application you can access the [rails_admin](https://github.com/sferik/rails_admin) dashboard under route `/admin`. It's currently only allowed for users with role superadmin.
+To access the data of your application you can access the [rails_admin](https://github.com/sferik/rails_admin) dashboard under route `http://0.0.0.0:3000/admin`. Access is currently only allowed for users with superadmin role.
 
 If you want to give your admin interface a custom branding you can override sass variables or write your own css under `app/assets/stylesheets/rails_admin/custom`.
 
-### 11. Testing
+Change rails_admin settins under `config/initializers/rails_admin.rb`.
+
+### 11. I18n
+This app has the default language `en` and already set a secondary language `de`. We included the [rails-i18n](https://github.com/svenfuchs/rails-i18n) to support other languages out of the box. Add more languages under `config/initializers/locale.rb`.
+
+#### Setting locale
+To switch locale just append `?locale=de` at the end of your url.
+
+#### Devise
+For devise we use [devise-i18n](https://github.com/tigrish/devise-i18n) to support other languages.
+
+Change translations under `config/locales/devise`.If you want to support more languages install them with `rails g devise:i18n:locale fr`. (<-- installs French)
+
+#### Rails Admin
+To get translations for rails admin out of the box we use [rails_admin-i18n](https://github.com/starchow/rails_admin-i18n).
+
+#### Testing Locales
+How to test your locale files and how to find missing one read [this](https://github.com/svenfuchs/rails-i18n#testing-your-locale-file).
+
+### 12. HTTP Authentication
+For your staging environment we recommend to use a HTTP Auth protection. To enable it set env var `IS_HTTP_AUTH_PROTECTED` to `true`.
+
+Set user with `HTTP_AUTH_USER` and password with `HTTP_AUTH_PASSWORD`.
+
+We enable HTTP auth currently for all controllers. The `ApplicationController` class includes the concern `HttpAuth`. Feel free to change it.
+
+### 13. Testing
 
 We are using the wonderful framework [rspec](https://github.com/rspec/rspec). The testsuit also uses [factory_bot_rails](https://github.com/thoughtbot/factory_bot_rails) for fixtures.
 
@@ -124,15 +152,18 @@ Create fake data easily with [faker gem](https://github.com/faker-ruby/faker). C
 #### Simplecov
 [SimpleCov](https://github.com/simplecov-ruby/simplecov) is a code coverage analysis tool for Ruby. It uses Ruby's built-in Coverage library to gather code coverage data, but makes processing its results much easier by providing a clean API to filter, group, merge, format, and display those results, giving you a complete code coverage suite that can be set up with just a couple lines of code.
 
-Access results with `$ open /coverage/index.html`.
+Open test coverage results with 
 
+```sh
+  $ open /coverage/index.html
+```
 
-### 12. Linter with Rubocop
+### 14. Linter with Rubocop
 
 We are using the wonderful [rubocop](https://github.com/rubocop-hq/rubocop-rails) to lint and autofix the code. Install the rubocop VSCode extension to get best experience during development.
 
 
-### 13. Deployment
+### 15. Deployment
 The project runs on every webhoster with ruby installed. The only dependency is a PostgreSQL database. Create a block `production:` in the`config/database.yml` for your connection.
 
 #### Heroku
@@ -140,7 +171,6 @@ The project runs on every webhoster with ruby installed. The only dependency is 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/zauberware/rails-devise-graphql)
 
 Choose the one click installer or push a clone of this repo to heroku by yourself. We added a `Profile` to the project and heroku run the `release:` statement after deploying a new version. Heroku will automatically set the db settings for your project, so there is nothing to do in `config/database.yml`.
-
 
 **Make sure all ENV vars are set and the database settings are valid.**
 
@@ -151,14 +181,10 @@ Make sure to set ENV vars `$HEROKU_API_KEY` and `$HEROKU_APP_NAME` in bitbuckets
 
 The pipeline has 2 environments: staging and production. Staging pipline is getting triggered in `develop` branch. Production deploy triggered by `master` branch.
 
-It also triggers pipeline when opening a PR.
+It also triggers pipeline while opening a PR.
 
 ## What's missing?
-
-* We want to move to https://github.com/o2web/graphql-auth
-
-
-Feel free to join development!
+Feel free to make feature requrest or join development!
 
 ## Author
 
