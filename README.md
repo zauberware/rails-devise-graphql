@@ -207,6 +207,8 @@ The pipeline has 2 environments: staging and production. Staging pipline is gett
 It also triggers pipeline while opening a PR.
 
 ## What's missing?
+- Update and Delete mutation for admin of an account
+
 Feel free to make feature requrest or join development!
 
 ## Share this repo
