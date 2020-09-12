@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# :nocov:
 module Types
   # Input type for user
   class UserInputType < Types::BaseInputObject
@@ -11,3 +12,4 @@ module Types
     argument :password_confirmation, String, 'Password confirmation', required: true
   end
 end
+# :nocov:
