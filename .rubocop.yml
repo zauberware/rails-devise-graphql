@@ -34,3 +34,5 @@ RSpec/UnspecifiedException:
     Enabled: false
 RSpec/ExampleLength:
     Max: 10
+RSpec/MultipleMemoizedHelpers:
+    Max: 10

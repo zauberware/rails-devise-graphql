@@ -2,7 +2,7 @@
 
 module Resolvers
   # Get current user object
-  class Me < GraphQL::Schema::Resolver
+  class Me < BaseResolver
     type Types::UserType, null: true
     description 'Returns the current user'
 

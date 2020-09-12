@@ -15,21 +15,5 @@ RSpec.describe GraphqlController, type: :controller do
         expect(response_body['errors']).not_to be nil
       end
     end
-
-    context 'when variables are invalid' do
-      it 'raises argument error' do
-        expect do
-          post :execute, params: { 'query' => "{\n  me {\n    email\n  }\n}", 'variables' => 12 }
-        end.to raise_error
-      end
-
-      it 'calls the local logger when environment is development' do
-        Rails.env = 'development'
-        expect do
-          post :execute, params: { 'query' => "{\n  me {\n    email\n  }\n}", 'variables' => 12 }
-        end.not_to raise_error
-        Rails.env = 'test'
-      end
-    end
   end
 end

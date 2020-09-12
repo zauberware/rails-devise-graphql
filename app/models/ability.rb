@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 # Defines abilities for user
-# rubocop:disable Style/GuardClause
 class Ability
   include CanCan::Ability
 
@@ -15,12 +14,13 @@ class Ability
     if user.superadmin?
       can :access, :rails_admin         # grant access to rails_admin
       can :manage, :all                 # admins can manage all objects
-      # elsif user.admin?
-      # can :crud,    Survey::QuestionAnswer              # user can crud all question answers
+    elsif user.admin?
+      can :crud, User, account_id: user.account_id
+    else
+      can :read, User, account_id: user.account_id
     end
 
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
   end
 end
-# rubocop:enable Style/GuardClause

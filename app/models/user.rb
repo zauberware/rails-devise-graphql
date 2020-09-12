@@ -28,6 +28,7 @@
 #  unlock_token           :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  account_id             :uuid
 #
 # Indexes
 #
@@ -37,7 +38,6 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #
-# User model to access application
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :timeoutable, :trackable and :omniauthable
@@ -58,6 +58,9 @@ class User < ApplicationRecord
   validates :email, format: { with: Regex::Email::VALIDATE }
   validates :first_name, length: { maximum: 255 }
   validates :last_name, length: { maximum: 255 }
+
+  # - RELATIONS
+  belongs_to :account
 
   # - CALLBACKS
   after_initialize :setup_new_user, if: :new_record?
