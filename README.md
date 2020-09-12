@@ -1,7 +1,6 @@
 # Rails 6 boilerplate with devise, JWT, graphQL, CanCanCan and RailsAdmin.
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/zauberware/rails-devise-graphql/graphs/commit-activity)
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/zauberware/rails-devise-graphql/blob/master/LICENSE)
-[![GitHub release](https://img.shields.io/github/release/Naereen/StrapDown.js.svg)](https://github.com/zauberware/rails-devise-graphql/releases/)
 ![GitHub top language](https://img.shields.io/github/languages/top/zauberware/rails-devise-graphql)
 ![GitHub issues](https://img.shields.io/github/issues/zauberware/rails-devise-graphql)
 
