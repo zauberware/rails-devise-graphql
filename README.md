@@ -86,6 +86,9 @@ Change devise settins under `config/initializers/devise.rb` and `config/initiali
 ### 4. GraphQL
 [graphql-ruby](https://github.com/rmosolgo/graphql-ruby) is a Ruby implementation of GraphQL. Sadly it's not 100% open source, but with the free version allows you amazing things to do. See the [Getting Started Guide](https://graphql-ruby.org/) and the current implementations in this project under `app/graphql/`.
 
+#### Schema on production
+We have disabled introspection of graphQL entry points here `app/graphql/graphql_schema.rb`. Remove `disable_introspection_entry_points` if you want to make the schema public accessible.
+
 ### 5. CORS
 Protect your app and only allow specific domains to access your API. Set `CLIENT_URL=` in `.env` to your prefered client. If you need advanced options please change the CORS settings here `config/initializers/cors.rb`.
 
