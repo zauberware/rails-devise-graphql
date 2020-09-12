@@ -5,17 +5,16 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/zauberware/rails-devise-graphql)
 ![GitHub issues](https://img.shields.io/github/issues/zauberware/rails-devise-graphql)
 
-
 This is a boilerplate to build your next SaaS product. It's a RubyOnRails 6 backend with Authentication and GraphQL API. It works nicely together with clients made with **React.js & React.Native** or any other frontend which implements the [JSON Web Tokens](https://jwt.io/introduction/) philosophy.
 
-## Versions
+### Versions
 
 - Current ruby version `2.6.x`
 - Bundler version `2.1.4`
 - Rails version `6.0.X`
 - Postgresql Server as db connector
 
-## Dependencies
+### Dependencies
 This boilerplate works like a charm with the following gemset:
 - pg
 - devise
@@ -33,11 +32,9 @@ This boilerplate works like a charm with the following gemset:
 
 ## Quick start
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/zauberware/rails-devise-graphql)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/zauberware/rails-devise-graphql) 
 
-or
-
-clone the repo:
+or clone this repo:
 
 ```sh
 git clone https://github.com/zauberware/rails-devise-graphql my-saas-backend
