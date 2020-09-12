@@ -214,6 +214,25 @@ Help us to get more attention to this project:
 
 ![Twitter URL](https://img.shields.io/twitter/url?label=Tweet%20about%20this%20project&style=social&url=https%3A%2F%2Fgithub.com%2Fzauberware%2Frails-devise-graphql)
 
+## 🚀 Contributors, backers & sponsors
+
+This project exists thanks to all the **people who contribute**.
+<a href="https://github.com/zauberware/rails-devise-graphql/graphs/contributors"><img src="https://opencollective.com/rails-devise-graphql/contributors.svg?width=890&button=false" /></a>
+
+Thank you to **all our backers**! 🙏 ([Become a backer](https://opencollective.com/rails-devise-graphql#backer))
+
+<a href="https://opencollective.com/rails-devise-graphql#backers" target="_blank"><img src="https://opencollective.com/rails-devise-graphql/backers.svg?width=890"></a>
+
+**Support this project by becoming a sponsor.** Your logo will show up here with a link to your website. ([Become a sponsor](https://opencollective.com/rails-devise-graphql#sponsor))
+
+<a href="https://opencollective.com/rails-devise-graphql/sponsor/0/website" target="_blank"><img src="https://opencollective.com/rails-devise-graphql/sponsor/0/avatar.svg"></a>
+
+
+## ♥ Code of Conduct
+
+Please note that zauberware has a [Code of Conduct](https://github.com/zauberware/rails-devise-graphql/blob/master/CODE_OF_CONDUCT.md). By participating in this project online or at events you agree to abide by its terms.
+
+
 ## Author
 
 __Script:__ <https://github.com/zauberware/rails-devise-graphql>
