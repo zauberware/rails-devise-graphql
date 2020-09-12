@@ -1,4 +1,4 @@
-# Rails 6 boilerplate with devise, JWT, graphQL, CanCanCan and RailsAdmin.
+# 💎 Rails 6 boilerplate with devise, JWT, graphQL, CanCanCan and RailsAdmin.
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/zauberware/rails-devise-graphql/graphs/commit-activity)
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/zauberware/rails-devise-graphql/blob/master/LICENSE)
 ![GitHub top language](https://img.shields.io/github/languages/top/zauberware/rails-devise-graphql)
@@ -29,7 +29,7 @@ This boilerplate works like a charm with the following gemset:
 - bootsnap
 
 
-## Quick start
+## 🚀 Quick start
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/zauberware/rails-devise-graphql) 
 
@@ -72,7 +72,7 @@ Point the GraphQL IDE to `http://0.0.0.0:3000/graphql`
 
 **Note:** Make sure that the `.env` file is included in the root of your project and you have defined `CLIENT_URL` and `DEVISE_SECRET_KEY`. You can try out the [Demo frontend](https://github.com/zauberware/gatsby-starter-redux-saas) or you implement the actions in any other client. Read more about the JSON Web Token [this](https://github.com/zauberware/rails-devise-graphql). There are plenty of packages available.
 
-## What's included?
+## 🎁 What's included?
 
 ### 1. Database
 The app uses a postgresql database. It implements the connector with the gem `pg`. The app already includes a `User` and a `Account` model with basic setup. We see an `Account` as a company with it's users. We did **not** add multi-tenancy to this app. If you want to do it by yourself check out the [apartment](https://github.com/influitive/apartment) gem.
@@ -181,7 +181,7 @@ Set your SMTP settings with these environment variables:
 
 Have a look at `config/environments/production.rb` where we set the `config.action_mailer.smtp_settings`.
 
-#### FROM email
+#### from: email
 Set the email address for your `ApplicationMailer` and devise emails with env var `DEVISE_MAILER_FROM`.
 
 
@@ -229,7 +229,7 @@ Thank you to **all our backers**! 🙏 ([Become a backer](https://opencollective
 <a href="https://opencollective.com/rails-devise-graphql/sponsor/0/website" target="_blank"><img src="https://opencollective.com/rails-devise-graphql/sponsor/0/avatar.svg"></a>
 
 
-## ♥ Code of Conduct
+## ❤️ Code of Conduct
 
 Please note that zauberware has a [Code of Conduct](https://github.com/zauberware/rails-devise-graphql/blob/master/CODE_OF_CONDUCT.md). By participating in this project online or at events you agree to abide by its terms.
 
