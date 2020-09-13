@@ -28,6 +28,7 @@ This boilerplate works like a charm with the following gems:
 - puma
 - bootsnap
 - friendly_id
+- dotenv
 
 
 ## 🚀 Quick start
