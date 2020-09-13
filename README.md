@@ -180,7 +180,7 @@ class Account < ApplicationRecord
 end
 ```
 
-Replace traditional `Account.find(params[:id])` with `Account.friendly.find(params[:id])`
+Replace traditional `Account.find(params[:id])` with `Account.friendly.find(params[:id])`
 ```ruby
   account = Account.friendly.find(params[:id])
 ```
