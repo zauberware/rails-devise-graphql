@@ -258,7 +258,9 @@ The pipeline has 2 environments: staging and production. Staging pipeline is get
 It also triggers pipeline while opening a PR.
 
 ## What's missing?
-- Update and Delete mutations for admin of an account
+- User update and delete mutations for admin of an account
+- Account update and delete mutations for admin of an account
+- Security: brakeman and bundler-audit
 
 Feel free to make feature request or join development!
 
