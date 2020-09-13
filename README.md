@@ -120,7 +120,7 @@ Run `$ annotate` in project root folder to update annotations.
 ### 9. Abilities with CanCanCan
 [CanCanCan](https://github.com/CanCanCommunity/cancancan) is an authorization library for Ruby and Ruby on Rails which restricts what resources a given user is allowed to access. We combine this gem with a `role` field defined on user model.
 
-Start defining your abilities under `app/models/ability.rb`.
+Start defining your abilities under `app/models/ability.rb`.
 
 
 ### 10. Rails Admin
@@ -142,7 +142,7 @@ To switch locale just append `?locale=de` at the end of your url. If no `locale`
 
 For devise we use [devise-i18n](https://github.com/tigrish/devise-i18n) to support other languages.
 
-Change translations under `config/locales/devise`.If you want to support more languages install them with `rails g devise:i18n:locale fr`. (<-- installs French)
+Change translations under `config/locales/devise`. If you want to support more languages install them with `rails g devise:i18n:locale fr`. (<-- installs French)
 
 #### Rails Admin
 
