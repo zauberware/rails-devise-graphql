@@ -29,12 +29,10 @@ class Account < ApplicationRecord
   # - RELATIONS
   has_many :users, dependent: :destroy
 
-
   # override friendly id checker for categories
   def should_generate_new_friendly_id?
     (slug.nil? || slug.blank?) || (name_changed? && !slug_changed?)
   end
-
 
   # :nocov:
   rails_admin do
