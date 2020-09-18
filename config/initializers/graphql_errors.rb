@@ -5,6 +5,10 @@ GraphQL::Errors.configure(GraphqlSchema) do
     nil
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    GraphQL::ExecutionError.new(exception.message)
+  end
+
   rescue_from ActiveRecord::RecordInvalid do |exception|
     GraphQL::ExecutionError.new(exception.record.errors.full_messages.join("\n"))
   end

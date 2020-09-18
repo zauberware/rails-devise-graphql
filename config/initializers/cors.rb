@@ -13,8 +13,8 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
 
     # origins '*'
     resource '*',
-      :headers => :any,
-      :expose  => ['Authorization'],
-      :methods => [:get, :post, :options, :delete, :put]
+             headers: :any,
+             expose: ['Authorization'],
+             methods: %i[get post options delete put]
   end
 end
