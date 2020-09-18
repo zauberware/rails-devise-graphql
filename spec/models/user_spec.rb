@@ -67,6 +67,32 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#setup_company' do
+    context 'when company is not set' do
+      let(:user) { create(:user, company: nil) }
+
+      it 'creates a new company' do
+        expect(user.company).not_to be_nil
+      end
+
+      it 'makes this user an admin' do
+        expect(user.role).to eq 'admin'
+      end
+    end
+
+    context 'when company is set' do
+      let(:user) { create(:user) }
+
+      it 'has a company' do
+        expect(user.company).not_to be_nil
+      end
+
+      it 'gives user role' do
+        expect(user.role).to eq 'user'
+      end
+    end
+  end
+
   # Methods
   describe '#name' do
     it 'returns first and lastname' do

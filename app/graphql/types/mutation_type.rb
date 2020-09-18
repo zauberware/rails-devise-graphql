@@ -7,6 +7,6 @@ module Types
     implements ::Types::GraphqlAuth
 
     # Mutations
-    # field :login, mutation: Mutations::User::Login
+    field :update_company, mutation: Mutations::Companies::UpdateCompany
   end
 end

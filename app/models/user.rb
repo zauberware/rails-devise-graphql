@@ -60,7 +60,7 @@ class User < ApplicationRecord
   validates :last_name, length: { maximum: 255 }
 
   # - RELATIONS
-  belongs_to :company, counter_cache: true
+  belongs_to :company, counter_cache: true, class_name: 'Companies::Company'
 
   # - CALLBACKS
   after_initialize :setup_new_user, if: :new_record?
@@ -81,7 +81,10 @@ class User < ApplicationRecord
   private
 
   def setup_company
-    self.company = Company.create!(name: 'My company') if company.nil?
+    return unless company.nil?
+
+    self.company = Companies::Company.create!(name: 'My company')
+    self.role = :admin # make this user the admin
   end
 
   def setup_new_user

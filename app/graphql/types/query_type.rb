@@ -12,7 +12,7 @@ module Types
     end
     field :user, resolver: Resolvers::User
 
-    field :company, resolver: Resolvers::Company
+    field :company, resolver: Resolvers::Companies::Company
 
     def current_ability
       Ability.new(context[:current_user])

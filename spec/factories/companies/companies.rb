@@ -15,14 +15,8 @@
 #
 #  index_companies_on_slug  (slug) UNIQUE
 #
-require 'rails_helper'
-
-RSpec.describe Company, type: :model do
-  it 'has a valid factory' do
-    expect(create(:company)).to be_valid
+FactoryBot.define do
+  factory :company, class: 'Companies::Company' do
+    name { 'My Company' }
   end
-
-  # Validations
-  it { is_expected.to validate_presence_of(:name) }
-  it { is_expected.to validate_length_of(:name).is_at_most(255) }
 end
