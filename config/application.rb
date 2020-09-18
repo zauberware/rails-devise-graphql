@@ -40,5 +40,8 @@ module RailsDeviseGraphql
     # Skip views, helpers and assets when generating a new resource.
 
     config.time_zone = 'Berlin'
+
+    # devise uses this for default from options
+    config.action_mailer.default_options = { from: ENV['DEVISE_MAILER_FROM'] }
   end
 end
