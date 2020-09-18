@@ -5,12 +5,12 @@ require 'rails_helper'
 RSpec.describe Resolvers::User, type: :request do
   subject(:graphql!) { result }
 
-  let!(:account) do
-    create(:account)
+  let!(:company) do
+    create(:company)
   end
 
   let!(:admin) do
-    create(:user, :admin, account_id: account.id)
+    create(:user, :admin, company_id: company.id)
   end
 
   let(:result) do
@@ -39,9 +39,9 @@ RSpec.describe Resolvers::User, type: :request do
   end
 
   describe 'user' do
-    context 'when user is not member of this account' do
+    context 'when user is not member of this company' do
       let(:user) do
-        create(:user, account: create(:account))
+        create(:user, company: create(:company))
       end
 
       let(:variables) do
@@ -54,9 +54,9 @@ RSpec.describe Resolvers::User, type: :request do
       end
     end
 
-    context 'when user is admin of this account' do
+    context 'when user is admin of this company' do
       let(:user) do
-        create(:user, account_id: account.id)
+        create(:user, company_id: company.id)
       end
 
       let(:variables) do
@@ -70,13 +70,13 @@ RSpec.describe Resolvers::User, type: :request do
       end
     end
 
-    context 'when user is member of this account' do
+    context 'when user is member of this company' do
       let(:user) do
-        create(:user, account_id: account.id)
+        create(:user, company_id: company.id)
       end
 
       let(:user2) do
-        create(:user, account_id: account.id)
+        create(:user, company_id: company.id)
       end
 
       let(:context) do

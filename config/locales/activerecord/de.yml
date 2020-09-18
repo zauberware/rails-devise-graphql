@@ -3,7 +3,7 @@ de:
     slug: Pfad
   activerecord:
     attributes:
-      account:
+      company:
         name: Name des Unternehmens
         users_count: Anzahl Mitarbeiter
       user:
@@ -37,6 +37,6 @@ de:
       user:
         one: Benutzer
         other: Benutzer
-      account:
-        one: Konto
-        other: Konten
+      company:
+        one: Unternehmen
+        other: Unternehmen

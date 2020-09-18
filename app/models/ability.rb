@@ -15,9 +15,9 @@ class Ability
       can :access, :rails_admin         # grant access to rails_admin
       can :manage, :all                 # admins can manage all objects
     elsif user.admin?
-      can :crud, User, account_id: user.account_id
+      can :crud, User, company_id: user.company_id
     else
-      can :read, User, account_id: user.account_id
+      can :read, User, company_id: user.company_id
     end
 
     # See the wiki for details:

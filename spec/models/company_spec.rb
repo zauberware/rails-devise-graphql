@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: accounts
+# Table name: companies
 #
 #  id          :uuid             not null, primary key
 #  name        :string
@@ -13,13 +13,13 @@
 #
 # Indexes
 #
-#  index_accounts_on_slug  (slug) UNIQUE
+#  index_companies_on_slug  (slug) UNIQUE
 #
 require 'rails_helper'
 
-RSpec.describe Account, type: :model do
+RSpec.describe Company, type: :model do
   it 'has a valid factory' do
-    expect(create(:account)).to be_valid
+    expect(create(:company)).to be_valid
   end
 
   # Validations

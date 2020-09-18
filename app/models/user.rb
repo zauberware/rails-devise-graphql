@@ -28,7 +28,7 @@
 #  unlock_token           :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  account_id             :uuid
+#  company_id             :uuid
 #
 # Indexes
 #
@@ -60,11 +60,11 @@ class User < ApplicationRecord
   validates :last_name, length: { maximum: 255 }
 
   # - RELATIONS
-  belongs_to :account, counter_cache: true
+  belongs_to :company, counter_cache: true
 
   # - CALLBACKS
   after_initialize :setup_new_user, if: :new_record?
-  before_validation :setup_account
+  before_validation :setup_company
 
   # return first and lastname
   def name
@@ -80,8 +80,8 @@ class User < ApplicationRecord
 
   private
 
-  def setup_account
-    self.account = Account.create!(name: 'My company') if account.nil?
+  def setup_company
+    self.company = Company.create!(name: 'My company') if company.nil?
   end
 
   def setup_new_user
@@ -121,7 +121,7 @@ class User < ApplicationRecord
       field :email
       field :role
       field :last_sign_in_at
-      field :account
+      field :company
     end
 
     edit do
@@ -131,7 +131,7 @@ class User < ApplicationRecord
       field :password
       field :password_confirmation
       field :role
-      field :account
+      field :company
     end
 
     show do
@@ -141,7 +141,7 @@ class User < ApplicationRecord
       field :email
       field :role
       field :last_sign_in_at
-      field :account
+      field :company
     end
   end
   # rubocop:enable Metrics/BlockLength

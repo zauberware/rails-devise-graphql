@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: accounts
+# Table name: companies
 #
 #  id          :uuid             not null, primary key
 #  name        :string
@@ -13,9 +13,9 @@
 #
 # Indexes
 #
-#  index_accounts_on_slug  (slug) UNIQUE
+#  index_companies_on_slug  (slug) UNIQUE
 #
-class Account < ApplicationRecord
+class Company < ApplicationRecord
   extend FriendlyId
 
   # - EXTENSIONS

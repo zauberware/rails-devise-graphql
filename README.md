@@ -77,7 +77,7 @@ Download a GraphQL client like [GraphiQL](https://github.com/graphql/graphiql) o
 ## 🎁 What's included?
 
 ### 1. Database
-The app uses a PostgreSQL database. It implements the connector with the gem `pg`. The app already includes a `User` and a `Account` model with basic setup. We see an `Account` as a company with it's users. We did **not** add multi-tenancy to this app. If you want to do it by yourself check out the [apartment](https://github.com/influitive/apartment) gem.
+The app uses a PostgreSQL database. It implements the connector with the gem `pg`. The app already includes a `User` and a `Company` model with basic setup. We see an `Company` as a company with it's users. We did **not** add multi-tenancy to this app. If you want to do it by yourself check out the [apartment](https://github.com/influitive/apartment) gem.
 
 
 ### 2. Authentication
@@ -162,7 +162,7 @@ We enable HTTP auth currently for all controllers. The `ApplicationController` c
 
 
 ### 13. Auto generated slugs
-To provider more user friendly urls for your frontend we are using [friendly_id](https://github.com/norman/friendly_id) to auto generate slugs for models. We have already implemented it for the `Account` model. For more configuration see `config/initializers/friendly_id.rb`.
+To provider more user friendly urls for your frontend we are using [friendly_id](https://github.com/norman/friendly_id) to auto generate slugs for models. We have already implemented it for the `Company` model. For more configuration see `config/initializers/friendly_id.rb`.
 
 To create a new slug field for a model add a field `slug`:
 
@@ -174,15 +174,15 @@ $ bundle exec rake db:migrate
 Edit your model file as the following:
 
 ```ruby
-class Account < ApplicationRecord
+class Company < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 end
 ```
 
-Replace traditional `Account.find(params[:id])` with `Account.friendly.find(params[:id])`
+Replace traditional `Company.find(params[:id])` with `Company.friendly.find(params[:id])`
 ```ruby
-  account = Account.friendly.find(params[:id])
+  company = Company.friendly.find(params[:id])
 ```
 
 

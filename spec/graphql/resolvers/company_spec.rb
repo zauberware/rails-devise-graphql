@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Resolvers::Account, type: :request do
+RSpec.describe Resolvers::Company, type: :request do
   subject(:graphql!) { result }
 
   let(:result) do
@@ -20,7 +20,7 @@ RSpec.describe Resolvers::Account, type: :request do
   let(:query_string) do
     <<-GRAPHQL
     query {
-      account {
+      company {
         id
         name
       }
@@ -28,7 +28,7 @@ RSpec.describe Resolvers::Account, type: :request do
     GRAPHQL
   end
 
-  describe 'account' do
+  describe 'company' do
     context 'when there\'s no current user' do
       let(:context) do
         {
@@ -38,7 +38,7 @@ RSpec.describe Resolvers::Account, type: :request do
 
       it 'returns nil' do
         graphql!
-        expect(result['data']['account']).to eq(nil)
+        expect(result['data']['company']).to eq(nil)
       end
     end
 
@@ -53,10 +53,10 @@ RSpec.describe Resolvers::Account, type: :request do
         }
       end
 
-      it 'returns account of user' do
+      it 'returns company of user' do
         graphql!
-        account_id = result['data']['account']['id']
-        expect(account_id).to eq(user.account.id)
+        company_id = result['data']['company']['id']
+        expect(company_id).to eq(user.company.id)
       end
     end
   end

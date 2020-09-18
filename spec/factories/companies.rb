@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: accounts
+# Table name: companies
 #
 #  id          :uuid             not null, primary key
 #  name        :string
@@ -13,10 +13,10 @@
 #
 # Indexes
 #
-#  index_accounts_on_slug  (slug) UNIQUE
+#  index_companies_on_slug  (slug) UNIQUE
 #
 FactoryBot.define do
-  factory :account do
+  factory :company do
     name { 'My Company' }
   end
 end

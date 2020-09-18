@@ -3,7 +3,7 @@ en:
     slug: Slug
   activerecord:
     attributes:
-      account:
+      company:
         name: Name of company
         users_count: Number of employees
       user:
@@ -37,6 +37,6 @@ en:
       user:
         one: User
         other: Users
-      account:
-        one: Account
-        other: Accounts
+      company:
+        one: Company
+        other: Companies

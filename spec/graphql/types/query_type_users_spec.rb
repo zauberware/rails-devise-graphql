@@ -5,12 +5,12 @@ require 'rails_helper'
 RSpec.describe Types::QueryType, type: :request do
   subject(:graphql!) { result }
 
-  let!(:account) do
-    create(:account)
+  let!(:company) do
+    create(:company)
   end
 
   let!(:admin) do
-    create(:user, :admin, account_id: account.id)
+    create(:user, :admin, company_id: company.id)
   end
 
   let(:result) do
@@ -67,7 +67,7 @@ RSpec.describe Types::QueryType, type: :request do
 
       let(:context) { { current_user: user } }
 
-      before { create_list(:user, 3, account: user.account) }
+      before { create_list(:user, 3, company: user.company) }
 
       it 'returns user in edges.' do
         graphql!

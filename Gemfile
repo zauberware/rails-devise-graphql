@@ -58,11 +58,11 @@ group :development, :test do
   gem 'dotenv-rails'                        # craate a .env file to set local environment variables
   gem 'factory_bot_rails'                   # model mocks with factory bot
   gem 'rspec-rails', '~> 3.8'               # used testframework
+  gem 'faker', '~> 1.8'
 end
 
 group :test do
   gem 'database_cleaner', '~> 1.6'
-  gem 'faker', '~> 1.8'
   gem 'rails-controller-testing'
   gem 'shoulda-matchers', '4.0.0.rc1'
   gem 'simplecov', require: false
