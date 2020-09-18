@@ -11,9 +11,10 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     origins ENV['CLIENT_URL'] ? ENV['CLIENT_URL'].split(',').map(&:strip) : '0.0.0.0:8000'
 
+    # origins '*'
     resource '*',
-             headers: :any,
-             methods: %i[get post put patch delete options head],
-             credentials: true
+      :headers => :any,
+      :expose  => ['Authorization'],
+      :methods => [:get, :post, :options, :delete, :put]
   end
 end
