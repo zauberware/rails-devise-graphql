@@ -7,6 +7,7 @@ module Types
     field :first_name, String, null: false
     field :last_name, String, null: false
     field :email, String, null: true
+    field :role, String, null: false
     field :company, Types::Companies::CompanyType, null: false
   end
 end

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   post '/graphql', to: 'graphql#execute'
-  devise_for :users, skip: :registrations # skip registration route
+  devise_for :users, controllers: { confirmations: 'confirmations' }, skip: :registrations # skip registration route
 
   # Just a blank root path
   root 'pages#blank'
