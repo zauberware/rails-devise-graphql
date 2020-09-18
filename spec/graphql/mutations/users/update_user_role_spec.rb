@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Mutations::UpdateUser do
+RSpec.describe Mutations::Users::UpdateUserRole do
   subject(:graphql!) { result }
 
   let!(:admin) do
@@ -23,13 +23,8 @@ RSpec.describe Mutations::UpdateUser do
 
   let(:query_string) do
     <<-GRAPHQL
-    mutation updateUser($id: ID!, $attributes: UserInput!){
-      updateUser(id: $id, attributes: $attributes) {
-        id
-        firstName
-        lastName
-        email
-      }
+    mutation updateUserRole($id: ID!, $role: String!){
+      updateUserRole(id: $id, role: $role)
     }
     GRAPHQL
   end
@@ -49,11 +44,7 @@ RSpec.describe Mutations::UpdateUser do
       let(:variables) do
         {
           id: user.id,
-          attributes: {
-            email: 'mail@pete.de',
-            lastName: 'new last name',
-            firstName: 'new first name'
-          }
+          role: 'admin'
         }
       end
 
@@ -61,6 +52,11 @@ RSpec.describe Mutations::UpdateUser do
         graphql!
         message = result['errors'][0]['message']
         expect(message).not_to be_nil
+      end
+
+      it 'not updates user role' do
+        graphql!
+        expect(user.role).to eq('user')
       end
     end
 
@@ -78,14 +74,14 @@ RSpec.describe Mutations::UpdateUser do
       let(:variables) do
         {
           id: 'wrong',
-          attributes: {}
+          role: 'admin'
         }
       end
 
       it 'returns errors' do
         graphql!
-        message = result['errors'][0]['message']
-        expect(message).not_to be_nil
+        message = result['data']['updateUserRolw']
+        expect(message).to be_nil
       end
     end
 
@@ -103,14 +99,19 @@ RSpec.describe Mutations::UpdateUser do
       let(:variables) do
         {
           id: user.id,
-          attributes: {}
+          role: 'superadmin'
         }
       end
 
-      it 'returns errors' do
+      it 'returns false' do
         graphql!
-        message = result['errors'][0]['message']
-        expect(message).not_to be_nil
+        success = result['data']['updateUserRole']
+        expect(success).to eq(false)
+      end
+
+      it 'not updates user role' do
+        graphql!
+        expect(user.role).to eq('user')
       end
     end
 
@@ -128,18 +129,19 @@ RSpec.describe Mutations::UpdateUser do
       let(:variables) do
         {
           id: user.id,
-          attributes: {
-            email: 'mail@pete.de',
-            lastName: 'new last name',
-            firstName: 'new first name'
-          }
+          role: 'admin'
         }
       end
 
-      it 'changes name' do
+      it 'returns true' do
         graphql!
-        name = result['data']['updateUser']['firstName']
-        expect(name).to eq('new first name')
+        success = result['data']['updateUserRole']
+        expect(success).to eq(true)
+      end
+
+      it 'updates user role' do
+        graphql!
+        expect(user.reload.role).to eq('admin')
       end
     end
   end

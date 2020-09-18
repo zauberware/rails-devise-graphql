@@ -5,7 +5,7 @@ GraphQL::Auth.configure do |config|
   config.jwt_secret_key = ENV['DEVISE_SECRET_KEY']
   config.app_url = ENV['CLIENT_URL']
 
-  config.user_type = '::Types::UserType'
+  config.user_type = '::Types::Users::UserType'
 
   # Devise allowed actions
   # Don't forget to enable the lockable setting in your Devise user model if you plan on using the lock_account feature

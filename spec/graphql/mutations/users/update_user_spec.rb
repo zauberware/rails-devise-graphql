@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Mutations::DeleteUser do
+RSpec.describe Mutations::Users::UpdateUser do
   subject(:graphql!) { result }
 
   let!(:admin) do
@@ -23,13 +23,18 @@ RSpec.describe Mutations::DeleteUser do
 
   let(:query_string) do
     <<-GRAPHQL
-    mutation deleteUser($id: ID!){
-      deleteUser(id: $id)
+    mutation updateUser($id: ID!, $attributes: UserInput!){
+      updateUser(id: $id, attributes: $attributes) {
+        id
+        firstName
+        lastName
+        email
+      }
     }
     GRAPHQL
   end
 
-  describe 'deleteUser' do
+  describe 'updateUser' do
     context 'when not an admin' do
       let(:user) do
         create(:user, company_id: admin.company_id)
@@ -43,7 +48,12 @@ RSpec.describe Mutations::DeleteUser do
 
       let(:variables) do
         {
-          id: user.id
+          id: user.id,
+          attributes: {
+            email: 'mail@pete.de',
+            lastName: 'new last name',
+            firstName: 'new first name'
+          }
         }
       end
 
@@ -67,14 +77,40 @@ RSpec.describe Mutations::DeleteUser do
 
       let(:variables) do
         {
-          id: 'wrong'
+          id: 'wrong',
+          attributes: {}
         }
       end
 
-      it 'returns nil' do
+      it 'returns errors' do
         graphql!
-        success = result['data']['deleteUser']
-        expect(success).to be_nil
+        message = result['errors'][0]['message']
+        expect(message).not_to be_nil
+      end
+    end
+
+    context 'with invalid params' do
+      let(:user) do
+        create(:user, company_id: admin.company_id)
+      end
+
+      let(:context) do
+        {
+          current_user: admin
+        }
+      end
+
+      let(:variables) do
+        {
+          id: user.id,
+          attributes: {}
+        }
+      end
+
+      it 'returns errors' do
+        graphql!
+        message = result['errors'][0]['message']
+        expect(message).not_to be_nil
       end
     end
 
@@ -91,14 +127,19 @@ RSpec.describe Mutations::DeleteUser do
 
       let(:variables) do
         {
-          id: user.id
+          id: user.id,
+          attributes: {
+            email: 'mail@pete.de',
+            lastName: 'new last name',
+            firstName: 'new first name'
+          }
         }
       end
 
       it 'changes name' do
         graphql!
-        success = result['data']['deleteUser']
-        expect(success).to eq(true)
+        name = result['data']['updateUser']['firstName']
+        expect(name).to eq('new first name')
       end
     end
   end

@@ -7,9 +7,9 @@ module Types
     implements ::Types::GraphqlAuth
 
     # Mutations
-    field :update_user, mutation: Mutations::UpdateUser
-    field :update_user_role, mutation: Mutations::UpdateUserRole
-    field :delete_user, mutation: Mutations::DeleteUser
+    field :update_user, mutation: Mutations::Users::UpdateUser
+    field :update_user_role, mutation: Mutations::Users::UpdateUserRole
+    field :delete_user, mutation: Mutations::Users::DeleteUser
 
     # Company
     field :update_company, mutation: Mutations::Companies::UpdateCompany

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Resolvers::Me, type: :request do
+RSpec.describe Resolvers::Users::Me, type: :request do
   subject(:graphql!) { result }
 
   let(:result) do
