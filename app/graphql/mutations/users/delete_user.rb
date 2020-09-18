@@ -11,7 +11,8 @@ module Mutations
       def resolve(id:)
         user = ::User.accessible_by(current_ability).find_by(id: id)
         if user.nil?
-          raise ActiveRecord::RecordNotFound, I18n.t('errors.messages.resource_not_found', resource: ::User.model_name.human)
+          raise ActiveRecord::RecordNotFound,
+                I18n.t('errors.messages.resource_not_found', resource: ::User.model_name.human)
         end
 
         current_ability.authorize! :destroy, user

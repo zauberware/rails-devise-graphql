@@ -11,7 +11,10 @@ module Mutations
 
       def resolve(id:, attributes:)
         user = ::User.accessible_by(current_ability).find_by(id: id)
-        raise ActiveRecord::RecordNotFound, I18n.t('errors.messages.resource_not_found', resource: ::User.model_name.human) if user.nil?
+        if user.nil?
+          raise ActiveRecord::RecordNotFound,
+                I18n.t('errors.messages.resource_not_found', resource: ::User.model_name.human)
+        end
 
         user.attributes = attributes.to_h
         current_ability.authorize! :update, user
