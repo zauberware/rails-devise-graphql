@@ -14,7 +14,6 @@ module Resolvers
         ::User.accessible_by(current_ability).includes(:company)
       end
 
-      # when "order_by" is passed "apply_order_by" would be called to order the relation
       option :order_by, type: Types::ItemOrderType, with: :apply_order_by
       def allowed_order_attributes
         %w[email first_name last_name created_at updated_at]

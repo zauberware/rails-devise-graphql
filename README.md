@@ -93,6 +93,57 @@ Change devise settins under `config/initializers/devise.rb` and `config/initiali
 ### 4. GraphQL
 [graphql-ruby](https://github.com/rmosolgo/graphql-ruby) is a Ruby implementation of GraphQL. Sadly it's not 100% open source, but with the free version allows you amazing things to do. See the [Getting Started Guide](https://graphql-ruby.org/) and the current implementations in this project under `app/graphql/`.
 
+#### Filters, Sorting & Pagination
+Our `BaseResolver` class provides everything you need to achieve filter, sorting and pagination. Have a look at the resolver `resolvers/users/users.rb`:
+
+**How to:**
+
+Include `SearchObject` module in your resolver:
+
+```ruby
+  class Users < Resolvers::BaseResolver
+      include ::SearchObject.module(:graphql)
+```
+
+Define the scope for this resolver:
+
+```ruby
+scope { resources }
+
+def resources
+  ::User.accessible_by(current_ability)
+end
+```
+
+Set a connection_type as return type to allow pagination:
+```ruby
+type Types::Users::UserType.connection_type, null: false
+```
+
+Set `order_by` as query option and define allowed order attributes:
+
+```ruby
+option :order_by, type: Types::ItemOrderType, with: :apply_order_by
+def allowed_order_attributes
+  %w[email first_name last_name created_at updated_at]
+end
+```
+
+Allow filtering with a custom defined filter object & define allowed filter attributes:
+
+```ruby
+# inline input type definition for the advanced filter
+class UserFilterType < ::Types::BaseInputObject
+  argument :OR, [self], required: false
+  argument :email, String, required: false
+  argument :first_name, String, required: false
+  argument :last_name, String, required: false
+end
+option :filter, type: UserFilterType, with: :apply_filter
+def allowed_filter_attributes
+  %w[email first_name last_name]
+end
+```
 
 #### Schema on production
 
@@ -261,7 +312,6 @@ It also triggers pipeline while opening a PR.
 - Check locked accounts
 - Invite for users, inviteMutation & acceptInviteMutation
 - Registration add more fields (Firstname, Last name)
-- Filter and sorting (Users + Company) 
 - Security: brakeman and bundler-audit
 
 Feel free to make feature request or join development!
