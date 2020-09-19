@@ -14,6 +14,10 @@ require 'rails/all'
 # require 'action_cable/engine'
 # require 'rails/test_unit/railtie'
 
+# We had to require this module manually. No idea why...
+require 'search_object'
+require 'search_object/plugin/graphql'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)

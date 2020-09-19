@@ -7,24 +7,27 @@ ruby '2.6.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3'
-gem 'rails-i18n', '~> 6.0.0'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
 
 gem 'bcrypt', '~> 3.1.7'                    # Use ActiveModel has_secure_password
 gem 'devise'                                # Use devise as authentication module
-gem 'devise-i18n'                           # Install default translations
 gem 'graphql', '~> 1.11.4'                  # GraphQL as API
 gem 'graphql-auth', git: 'https://github.com/simonfranzen/graphql-auth.git', branch: 'rails6'
 gem 'graphql-errors'                        # GrapqhQL error handling
+gem 'search_object_graphql'                 # Search Object for graphql-ruby
 gem 'rack-cors'                             # Rack CORS settings
 gem 'rails_admin', '~> 2.0.2'               # Admin interface
-gem 'rails_admin-i18n'                      # Use default rails_admin translations
 gem 'cancancan'                             # Defining abilities
 gem 'image_processing', '~> 1.2'            # Image processing
 gem 'mini_magick'                           # Image manipulation with rmagick
 gem 'friendly_id', '5.3.0'                  # Auto generate slugs for resources
+
+# I18n
+gem 'rails-i18n', '~> 6.0.0'
+gem 'devise-i18n'                           # Install default translations
+gem 'rails_admin-i18n'                      # Use default rails_admin translations
 
 # gem 'graphiql-rails', group: :development
 
