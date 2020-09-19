@@ -24,6 +24,7 @@ gem 'image_processing', '~> 1.2'            # Image processing
 gem 'mini_magick'                           # Image manipulation with rmagick
 gem 'friendly_id', '5.3.0'                  # Auto generate slugs for resources
 gem 'foreman'
+gem 'rack-attack'                           # request limiter and ip blocker
 
 # I18n
 gem 'rails-i18n', '~> 6.0.0'
@@ -71,6 +72,7 @@ group :test do
   gem 'shoulda-matchers', '4.0.0.rc1'
   gem 'simplecov', require: false
   gem 'i18n-spec'
+  gem 'timecop'
 end
 
 group :development do

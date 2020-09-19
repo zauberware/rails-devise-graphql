@@ -21,6 +21,7 @@ This boilerplate works like a charm with the following gems:
 - graphql-auth
 - graphql-errors
 - rack-cors
+- rack_attack
 - rails_admin
 - cancancan
 - image_processing
@@ -269,8 +270,17 @@ Open test coverage results with
 
 We are using the wonderful [rubocop](https://github.com/rubocop-hq/rubocop-rails) to lint and auto fix the code. Install the rubocop VSCode extension to get best experience during development.
 
+### 16. Security with Rack Attack
+See `config/initializers/rack_attack.rb` file. We have defined a common set of rules to block users trying to access the application multiple times with wrong credentials, or trying to create a hundreds requests per minute.
 
-### 16. Sending emails
+To speed up tests add this to your `.env.test`
+
+```
+ATTACK_REQUEST_LIMIT=30
+ATTACK_AUTHENTICATED_REQUEST_LIMIT=30
+```
+
+### 17. Sending emails
 Set your SMTP settings with these environment variables:
 - `SMTP_ADDRESS`
 - `SMTP_PORT`
@@ -287,7 +297,7 @@ Have a look at `config/environments/production.rb` where we set the `config.acti
 Set the email address for your `ApplicationMailer` and devise emails with env var `DEVISE_MAILER_FROM`.
 
 
-### 17. Deployment
+### 18. Deployment
 The project runs on every server with ruby installed. The only dependency is a PostgreSQL database. Create a block `production:` in the`config/database.yml` for your connection.
 
 #### Heroku
