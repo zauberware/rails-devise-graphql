@@ -309,9 +309,10 @@ The pipeline has 2 environments: staging and production. Staging pipeline is get
 It also triggers pipeline while opening a PR.
 
 ## What's missing?
-- Check locked accounts
+- Check & retest locked accounts
 - Invite for users, inviteMutation & acceptInviteMutation
 - Registration add more fields (Firstname, Last name)
+- Tests for filter, sorting & pagination
 - Security: brakeman and bundler-audit
 
 Feel free to make feature request or join development!
