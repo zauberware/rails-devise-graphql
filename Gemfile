@@ -23,6 +23,7 @@ gem 'cancancan'                             # Defining abilities
 gem 'image_processing', '~> 1.2'            # Image processing
 gem 'mini_magick'                           # Image manipulation with rmagick
 gem 'friendly_id', '5.3.0'                  # Auto generate slugs for resources
+gem 'foreman'
 
 # I18n
 gem 'rails-i18n', '~> 6.0.0'

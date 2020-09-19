@@ -114,6 +114,7 @@ GEM
       tty-screen (~> 0.6.5)
       tty-tree (~> 0.3.0)
     ffi (1.11.1)
+    foreman (0.87.2)
     friendly_id (5.3.0)
       activerecord (>= 4.0.0)
     globalid (0.4.2)
@@ -363,6 +364,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker (~> 1.8)
+  foreman
   friendly_id (= 5.3.0)
   graphql (~> 1.11.4)
   graphql-auth!
