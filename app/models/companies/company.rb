@@ -1,21 +1,22 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: companies
+#
+#  id          :uuid             not null, primary key
+#  name        :string
+#  slug        :string
+#  users_count :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+# Indexes
+#
+#  index_companies_on_slug  (slug) UNIQUE
+#
 module Companies
-  # == Schema Information
-  #
-  # Table name: companies
-  #
-  #  id          :uuid             not null, primary key
-  #  name        :string
-  #  slug        :string
-  #  users_count :integer
-  #  created_at  :datetime         not null
-  #  updated_at  :datetime         not null
-  #
-  # Indexes
-  #
-  #  index_companies_on_slug  (slug) UNIQUE
-  #
+  # A company to scope a bunch of users
   class Company < ApplicationRecord
     extend FriendlyId
 

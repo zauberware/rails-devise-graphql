@@ -13,6 +13,7 @@ gem 'pg'
 
 gem 'bcrypt', '~> 3.1.7'                    # Use ActiveModel has_secure_password
 gem 'devise'                                # Use devise as authentication module
+gem 'devise_invitable', '~> 2.0.0'          # Used to invite users. Allows setting passwords by invited user
 gem 'graphql', '~> 1.11.4'                  # GraphQL as API
 gem 'graphql-auth', git: 'https://github.com/simonfranzen/graphql-auth.git', branch: 'rails6'
 gem 'graphql-errors'                        # GrapqhQL error handling

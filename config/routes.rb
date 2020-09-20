@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   devise_for :users,
              controllers: {
                confirmations: 'auth/confirmations',
-               passwords: 'auth/passwords'
+               passwords: 'auth/passwords',
+               invitations: 'auth/invitations'
              },
              skip: :registrations # skip registration route
 

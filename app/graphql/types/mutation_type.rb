@@ -10,6 +10,8 @@ module Types
     field :update_user, mutation: Mutations::Users::UpdateUser
     field :update_user_role, mutation: Mutations::Users::UpdateUserRole
     field :delete_user, mutation: Mutations::Users::DeleteUser
+    field :invite_user, mutation: Mutations::Users::InviteUser
+    field :accept_invite, mutation: Mutations::Users::AcceptInvite
 
     # Company
     field :update_company, mutation: Mutations::Companies::UpdateCompany
