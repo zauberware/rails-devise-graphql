@@ -23,8 +23,8 @@ RSpec.describe Resolvers::Users::Users, type: :request do
 
   let(:query_string) do
     <<-GRAPHQL
-    query($after: String, $before: String, $first: Int, $last: Int) {
-      users(after: $after, before: $before, first: $first, last: $last){
+    query($orderBy: ItemOrder, $filter: UserFilter, $after: String, $before: String, $first: Int, $last: Int) {
+      users(orderBy: $orderBy, filter: $filter, after: $after, before: $before, first: $first, last: $last){
         pageInfo {
           endCursor
           startCursor
@@ -77,6 +77,81 @@ RSpec.describe Resolvers::Users::Users, type: :request do
       it 'returns pageInfo' do
         graphql!
         expect(result['data']['users']['pageInfo']['startCursor']).not_to be_empty
+      end
+    end
+
+    context 'when filters set' do
+      let(:user) { create(:user) }
+      let(:user2) { create(:user) }
+
+      let(:context) { { current_user: user } }
+
+      let(:variables) do
+        {
+          filter: {
+            firstName: user.first_name
+          }
+        }
+      end
+
+      before { create_list(:user, 3, company: user.company) }
+
+      it 'returns only filtered user' do
+        graphql!
+        users = result['data']['users']['edges']
+        expect(users.first['node']['id']).to eq(user.id)
+      end
+
+      it 'returns only the filterd one' do
+        graphql!
+        users = result['data']['users']['edges']
+        expect(users.length).to eq(1)
+      end
+
+      it 'returns pageInfo' do
+        graphql!
+        expect(result['data']['users']['pageInfo']['startCursor']).not_to be_empty
+      end
+
+      it 'not has errors' do
+        graphql!
+        expect(result['errors']).to be_nil
+      end
+    end
+
+    context 'when orderBy set' do
+      let(:user) { create(:user) }
+      let(:user2) { create(:user) }
+
+      let(:context) { { current_user: user } }
+
+      let(:variables) do
+        {
+          orderBy: {
+            attribute: 'first_name',
+            direction: 'asc'
+          }
+        }
+      end
+
+      before { create_list(:user, 20, company: user.company) }
+
+      it 'returns ordered users' do
+        graphql!
+        users = result['data']['users']['edges']
+        (users.length - 2).times do |i|
+          expect(users[i]['node']['firstName'][0] <= users[i + 1]['node']['firstName'][0]).to be_truthy
+        end
+      end
+
+      it 'returns pageInfo' do
+        graphql!
+        expect(result['data']['users']['pageInfo']['startCursor']).not_to be_empty
+      end
+
+      it 'not has errors' do
+        graphql!
+        expect(result['errors']).to be_nil
       end
     end
   end
