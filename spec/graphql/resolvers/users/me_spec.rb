@@ -22,6 +22,8 @@ RSpec.describe Resolvers::Users::Me, type: :request do
     query {
       me {
         name
+        isConfirmed
+        isLocked
       }
     }
     GRAPHQL
