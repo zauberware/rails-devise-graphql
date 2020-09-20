@@ -16,6 +16,7 @@ de:
       timeout: Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.
       unauthenticated: Sie müssen sich anmelden oder registrieren, bevor Sie fortfahren können.
       unconfirmed: Sie müssen Ihr Konto bestätigen, bevor Sie fortfahren können.
+      invited: "Sie haben eine ausstehende Einladung, nehmen Sie diese an, um die Erstellung Ihres Kontos abzuschließen."
     mailer:
       confirmation_instructions:
         action: Mein Konto bestätigen
@@ -43,6 +44,26 @@ de:
         instruction: "Folgen Sie dem untenstehenden Link, um Ihr Konto zu entsperren:"
         message: Ihr Konto wurde aufgrund einer großen Anzahl von fehlgeschlagenen Anmeldeversuchen gesperrt.
         subject: Anleitung für die Konto-Freischaltung
+      invitation_instructions:
+        subject: "Ihre Einladung annehmen"
+        hello: "Hallo %{email}"
+        someone_invited_you: "Jemand hat Sie zu %{url} eingeladen, akzeptieren Sie die Einladung über den angefügten Link."
+        accept: "Einladung annehmen"
+        accept_until: "Diese Einladung ist gültig bis %{due_date}."
+        ignore: "Wenn Sie die Einladung nicht annehmen möchten, ignorieren Sie diese E-Mail. Ihr Konto wird nicht erstellt, solange sie nicht über den Link Ihr Passwort vergeben."
+    invitations:
+      send_instructions: "Eine Einladung wurde versendet an %{email}."
+      invitation_token_invalid: "Der Token zur Einladung ist nicht gültig!"
+      updated: "Ihr Passwort wurde erfolgreich gestzt. Sie sind nun eingeloggt."
+      updated_not_active: "Ihr Passwort wurde erfolgreich gesetzt."
+      no_invitations_remaining: "Keine Einladungen mehr übrig."
+      invitation_removed: "Ihre Einladung wurde entfernt."
+      new:
+        header: "Einladung versenden"
+        submit_button: "Versende eine Einladung"
+      edit:
+        header: "Vergebe ein Passwort"
+        submit_button: "Mein Passwort setzen"
     omniauth_callbacks:
       failure: Sie konnten nicht mit Ihrem %{kind}-Konto angemeldet werden, weil "%{reason}".
       success: Sie haben sich erfolgreich mit Ihrem %{kind}-Konto angemeldet.
@@ -104,3 +125,9 @@ de:
       send_instructions: Sie erhalten in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie Ihr Konto entsperren können.
       send_paranoid_instructions: Falls Ihre E-Mail-Adresse in unserer Datenbank existiert, erhalten Sie in wenigen Minuten eine E-Mail, mit der Anleitung, wie Sie Ihr Konto entsperren können.
       unlocked: Ihr Konto wurde entsperrt. Bitte melden Sie sich an, um fortzufahren.
+  time:
+    formats:
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"
