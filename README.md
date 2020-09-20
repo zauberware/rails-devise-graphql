@@ -17,6 +17,7 @@ This is a boilerplate to build your next SaaS product. It's a RubyOnRails 6 back
 This boilerplate works like a charm with the following gems:
 - pg
 - devise
+- devise_invitable
 - graphql
 - graphql-auth
 - graphql-errors
@@ -84,7 +85,12 @@ The app uses a PostgreSQL database. It implements the connector with the gem `pg
 ### 2. Authentication
 The app uses [devise](https://github.com/plataformatec/devise)'s logic for authentication. For graphQL API we use the JWT token, but to access the rails_admin backend we use standard devise views, but registration is excluded.
 
-Change devise settins under `config/initializers/devise.rb` and `config/initializers/graphql_auth.rb`.
+Change devise settings under `config/initializers/devise.rb` and `config/initializers/graphql_auth.rb`.
+
+#### Invitations
+Admins of a company can invite new users. The process is handled with `devise_invitable`. We added a `inviteUser` and `acceptInvite` mutation to handle this process via graphql.
+
+Like in the reset password process we redirect the users to the frontend domain and not to backend.
 
 
 ### 3. JSON Web Token
