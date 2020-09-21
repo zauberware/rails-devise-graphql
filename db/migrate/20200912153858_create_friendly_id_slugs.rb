@@ -12,6 +12,6 @@ class CreateFriendlyIdSlugs < ActiveRecord::Migration[6.0]
     add_index :friendly_id_slugs, [:slug, :sluggable_type, :scope], :unique => true
     add_index :friendly_id_slugs, :sluggable_type
 
-    Company.all.each(&:save)
+    Companies::Company.all.each(&:save)
   end
 end
