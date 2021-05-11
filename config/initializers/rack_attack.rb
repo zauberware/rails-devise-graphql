@@ -187,7 +187,7 @@ module Rack
 
       headers = {}
 
-      [429, headers, [{ 'errors': [{ 'message': 'Too many requests' }] }.to_json]]
+      [429, headers, [{ errors: [{ message: 'Too many requests' }] }.to_json]]
     end
   end
 end
