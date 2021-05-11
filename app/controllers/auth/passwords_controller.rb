@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Layout/LineLength
 module Auth
   # Custom passwords controller
   class PasswordsController < Devise::PasswordsController
@@ -11,4 +10,3 @@ module Auth
     end
   end
 end
-# rubocop:enable Layout/LineLength
