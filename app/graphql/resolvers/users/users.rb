@@ -11,6 +11,7 @@ module Resolvers
       value 'email', value: 'email'
     end
 
+    # Sort Type Enum
     class UserSortType < ::Types::BaseSortType
       argument :attribute, UserSortEnum, required: true, description: 'Choose the column to sort the resource.'
     end
@@ -20,7 +21,6 @@ module Resolvers
     class UserFilterType < ::Types::BaseInputObject
       argument :OR, [self], required: false
       argument :text_search, String, required: false
-      argument :id, ID, required: false
       argument :firstname, String, required: false
       argument :lastname, String, required: false
       argument :email, String, required: false

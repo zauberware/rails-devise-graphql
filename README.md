@@ -105,56 +105,52 @@ Our `BaseResolver` class provides everything you need to achieve filter, sorting
 
 **How to include manually:**
 
-Include `SearchAndFilterModule` module in your model and add allowed filter attributes:
-# TODO
+Include `SearchAndFilterModule` module in your model and add allowed filter attributes like this:
 ```ruby
   class Users < Resolvers::BaseResolver
-      include ::SearchObject.module(:graphql)
+      include SearchAndFilterModule
+
+      def self.allowed_filter_attributes
+        %w[email first_name last_name created_at updated_at]
+      end
 ```
 
-Set `order_by` as query option and define allowed order attributes:
-
+Define the SortEnum and the FilterType in the resolver:
 ```ruby
-option :order_by, type: Types::ItemOrderType, with: :apply_order_by
-def allowed_order_attributes
-  %w[email first_name last_name created_at updated_at]
-end
+module Resolvers
+  module Users
+    # Custom SORTING
+    class UserSortEnum < ::Types::SortAttributeEnum
+      value 'id', value: 'id'
+      value 'role', value: 'role'
+      value 'firstname', value: 'firstname'
+      value 'lastname', value: 'lastname'
+      value 'email', value: 'email'
+    end
+
+    # Sort Type Enum
+    class UserSortType < ::Types::BaseSortType
+      argument :attribute, UserSortEnum, required: true, description: 'Choose the column to sort the resource.'
+    end
+
+    # FILTERS
+    # inline input type definition for the advanced filter
+    class UserFilterType < ::Types::BaseInputObject
+      argument :OR, [self], required: false
+      argument :text_search, String, required: false
+      argument :firstname, String, required: false
+      argument :lastname, String, required: false
+      argument :email, String, required: false
+    end
 ```
 
-Define the scope for this resolver:
+The Sort Enum defines what attributes can be used for sorting users.
 
-```ruby
-scope { resources }
-
-def resources
-  ::User.accessible_by(current_ability)
-end
-```
-
-Set a connection_type as return type to allow pagination:
-```ruby
-type Types::Users::UserType.connection_type, null: false
-```
-
-Allow filtering with a custom defined filter object & define allowed filter attributes:
-
-```ruby
-# inline input type definition for the advanced filter
-class UserFilterType < ::Types::BaseInputObject
-  argument :OR, [self], required: false
-  argument :email, String, required: false
-  argument :first_name, String, required: false
-  argument :last_name, String, required: false
-end
-option :filter, type: UserFilterType, with: :apply_filter
-def allowed_filter_attributes
-  %w[email first_name last_name]
-end
-```
+The Filter Type defines what attributes can be used to filter for users. As described above, these attributes need to also be allowed as filter attributes in the User Model file.
 
 #### Schema on production
 
-We have disabled introspection of graphQL entry points here `app/graphql/graphql_schema.rb`. Remove `disable_introspection_entry_points` if you want to make the schema public accessible.
+We have disabled introspection of GraphQL entry points here `app/graphql/graphql_schema.rb`. Remove `disable_introspection_entry_points` if you want to make the schema public accessible.
 
 
 ### 5. CORS
@@ -246,7 +242,7 @@ Replace traditional `Company.find(params[:id])` with `Company.friendly.find(para
 ### GraphQL Generator BETA
 Currently still under development, this project includes a GraphQL generator for resolvers, mutations, types and automatic endpoint tests for models. This is a new feature and not all field types are supported yet. If you encounter a type that is not yet supported, you are welcome to open a PR.
 
-For any model, the GraphQL generator can create endpoints that each come with basic test cases. It can create endpoints for creating(`c`), reading(`r`), updating(`u`) and/r deleting(`d`) a model. Depending on the selected modes, different files are created. 
+For any model, the GraphQL generator can create endpoints that each come with basic test cases. It can create endpoints for creating(`c`), reading(`r`), updating(`u`) and/or deleting(`d`) a model. Depending on the selected modes, different files are created. 
 
 The create mode (`c`) will
   - create an input type file (`app/graphql/types/<MODELS>/<MODEL>_input_type.rb`)
@@ -276,11 +272,11 @@ If you choose multiple modes, files will only be created once, meaning for examp
 
 The generator uses all model attributes to generate the graphql types, if you prefer to not give access to certain attributes, you have to delete them manually from the type and test files after generating them.
 
-Access rights for resources have to be defined in the `ability.rb` since this is used to determine, whether a user is allowed to manipulate records in the GraphQL endpoints.
+Access rights for resources have to be defined in the `ability.rb` manually.
 
 # Examples
 
-In case you would want to create endpoints for an existing model `Post`, that is supposed to represent a blog post that users can only read but not interact with, then you can create GraphQL endpoints just like this:
+In case you would want to create endpoints for an existing model `Post`, that is supposed to represent a blog post that users can only read but not interact with, you would create GraphQL endpoints just like this:
 
 ```sh
   rails g gql post r

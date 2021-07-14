@@ -1,8 +1,46 @@
 Description:
-    Explain the generator
+    This is a GraphQL generator for resolvers, mutations, types and automatic endpoint tests for models.
+    For any model, the GraphQL generator can create endpoints that each come with basic test cases. It can create endpoints for creating(`c`), reading(`r`), updating(`u`) and/r deleting(`d`) a model. Depending on the selected modes, different files are created. 
 
-Example:
-    bin/rails generate gql Thing
+    The create mode (`c`) will
+    - create an input type file (`app/graphql/types/<MODELS>/<MODEL>_input_type.rb`)
+    - create a type file (`app/graphql/types/<MODELS>/<MODEL>_type.rb`)
+    - create a creation mutation (`app/graphql/mutations/<MODELS>/create_<MODEL>.rb`) with a test (`spec/graphql/mutations/<MODELS>/create_<MODEL>_spec.rb`)
+    - modify the mutation type file (`app/graphql/types/mutation_type.rb`) by including the creation endpoint
 
-    This will create:
-        what/will/it/create
+    The read mode (`r`) will
+    - create a type file (`app/graphql/types/<MODELS>/<MODEL>_type.rb`)
+    - create a single entry query (`app/graphql/resolvers/<MODELS>/<MODEL>.rb`) with a test (`spec/graphql/resolvers/<MODELS>/<MODEL>_spec.rb`)
+    - create a paginated list query with search and filter options (`app/graphql/resolvers/<MODELS>/<MODEL>.rb`) with a test (`spec/graphql/resolvers/<MODELS>/<MODEL>_spec.rb`)
+    - modify the model file (`app/models/<MODEL>.rb`) by including the `SearchAndFilterModule` and defining allowed filter attributes
+    - modify the query type file (`app/graphql/types/query_type.rb`) by including the single and the list endpoints
+
+    The update mode (`u`) will
+    - create an input type file (`app/graphql/types/<MODELS>/<MODEL>_input_type.rb`)
+    - create a type file (`app/graphql/types/<MODELS>/<MODEL>_type.rb`)
+    - create a update mutation (`app/graphql/mutations/<MODELS>/update_<MODEL>.rb`) with a test (`spec/graphql/mutations/<MODELS>/update_<MODEL>_spec.rb`)
+    - modify the mutation type file (`app/graphql/types/mutation_type.rb`) by including the update endpoint
+
+    The delete mode (`c`) will
+    - create a type file (`app/graphql/types/<MODELS>/<MODEL>_type.rb`)
+    - create a deletion mutation (`mutations/delete_<MODEL>.rb`) with a test (`mutations/delete_<MODEL>_spec.rb`)
+    - modify the mutation type file (`app/graphql/types/mutation_type.rb`) by including the creation endpoint
+
+    If you choose multiple modes, files will only be created once, meaning for example that there will be no duplicate type files created.
+
+    The generator uses all model attributes to generate the graphql types, if you prefer to not give access to certain attributes, you have to delete them manually from the type and test files after generating them.
+
+    Access rights for resources have to be defined in the `ability.rb` since this is used to determine, whether a user is allowed to manipulate records in the GraphQL endpoints.
+
+Examples:
+    In case you would want to create endpoints for an existing model `Post`, that is supposed to represent a blog post that users can only read but not interact with, you would create GraphQL endpoints just like this:
+
+    ```sh
+    rails g gql post r
+    ```
+
+    Let's assume you would want to create Graphql endpoints for another model called `Comment`. If you would want users to be able to create, read, update, and delete instances of that model, you would write the following to create the GraphQL endpoints:
+
+    ```sh
+    rails g gql comment crud
+    ```

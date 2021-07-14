@@ -55,7 +55,7 @@ class User < ApplicationRecord
   include SearchAndFilterModule
 
   def self.allowed_filter_attributes
-    %w[text_search role first_name last_name phone_number mobile_number email]
+    %w[text_search firstname lastname email]
   end
 
   # Include default devise modules. Others available are:
