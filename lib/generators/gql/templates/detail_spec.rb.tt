@@ -1,0 +1,56 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+RSpec.describe Resolvers::<%= class_name.pluralize %>::<%= class_name %>, type: :request do
+  before do
+    prepare_query_variables({})
+    prepare_query("
+      query($id: ID!) {
+      <%= class_name.camelize(:lower) %>(id: $id) {<% class_attributes.each do |attribute| %>
+        <%= attribute.name.camelize(:lower) %><% end %>
+      }
+    }
+    ")
+  end
+
+  let!(:user) do
+    create(:user)
+  end
+
+  describe 'user' do
+    context 'when there\'s no current user' do
+      before do
+        @<%= class_name.underscore.downcase %> = create(:<%= class_name.underscore.downcase %>)
+        prepare_context({ current_user: nil })
+
+        prepare_query_variables({
+                                  id: @<%= class_name.underscore.downcase %>.id
+                                })
+      end
+
+      it 'returns error' do
+        expect(graphql!['errors'][0]['message']).not_to be_empty
+      end
+    end
+
+    context 'when user is logged in' do
+      before do
+        @<%= class_name.underscore.downcase %> = create(:<%= class_name.underscore.downcase %>)
+        prepare_context({ current_user: user })
+
+        prepare_query_variables({
+                                  id: @<%= class_name.underscore.downcase %>.id
+                                })
+      end
+
+      it 'does not return errors' do
+        expect(graphql!['errors']).to be_nil
+      end
+
+      it 'can access <%= class_name.underscore.humanize(capitalize: false) %>' do
+        expect(graphql!['data']['<%= class_name.camelize(:lower) %>']['id']).to eq(@<%= class_name.underscore.downcase %>.id)
+      end
+    end
+  end
+end

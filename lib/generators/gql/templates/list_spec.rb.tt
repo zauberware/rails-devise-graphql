@@ -1,0 +1,148 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+RSpec.describe Resolvers::<%= class_name.pluralize %>::<%= class_name.pluralize %>, type: :request do
+  before do
+    prepare_query_variables({})
+    prepare_query("
+      query($sortBy: <%= class_name %>Sort, $filter: <%= class_name %>Filter, $page: Int, $limit: Int) {
+        <%= class_name.pluralize.camelize(:lower) %>(sortBy: $sortBy, filter: $filter, page: $page, limit: $limit){
+          metadata {
+            totalPages
+            totalCount
+            currentPage
+            limitValue
+          }
+          collection {<% class_attributes.each do |attribute| %>
+            <%= attribute.name.camelize(:lower) %><% end %>
+          }
+        }
+      }
+    ")
+  end
+  
+  let(:user) { create(:user) }
+
+  describe '<%= class_name.pluralize.underscore.humanize(capitalize: false) %>' do
+    context 'when there\'s no current user' do
+      before do
+        prepare_context({ current_user: nil })
+
+        create_list(:<%= class_name.underscore %>, 3)
+      end
+
+      it 'returns error' do
+        expect(graphql!['errors'][0]['message']).not_to be_empty
+      end
+    end
+
+    context 'when there\'s a current user' do
+      before do
+        prepare_context({ current_user: user })
+
+        create_list(:<%= class_name.underscore %>, 3)
+      end
+
+      it 'returns user in collection.' do
+        expect(graphql!['data']['<%= class_name.pluralize.camelize(:lower) %>']['collection'].length).to eq(3)
+      end
+
+      it 'returns metadata' do
+        expect(graphql!['data']['<%= class_name.pluralize.camelize(:lower) %>']['metadata']['totalCount']).not_to be_nil
+      end
+
+      it 'not has error' do
+        expect(graphql!['errors']).to be_nil
+      end
+    end
+
+    context 'when filters set' do
+      before do
+        @<%= class_name.underscore %> = create(:<%= class_name.underscore %>)
+        prepare_context({ current_user: user })
+        prepare_query_variables({
+                                  filter: {
+                                    createdAt: "<= #{@<%= class_name.underscore %>.created_at + 1.hour}"
+                                  }
+                                })
+
+        Timecop.freeze(DateTime.now + 2.hours) do
+          create_list(:<%= class_name.underscore %>, 3)
+        end
+      end
+
+      it 'returns only filtered <%= class_name.pluralize.underscore.humanize(capitalize: false) %>' do
+        <%= class_name.pluralize.underscore %> = graphql!['data']['<%= class_name.pluralize.camelize(:lower) %>']['collection']
+        expect(<%= class_name.pluralize.underscore %>.first['createdAt']).to eq(@<%= class_name.underscore %>.created_at.iso8601)
+      end
+
+      it 'returns only the filtered one' do
+        <%= class_name.pluralize.underscore %> = graphql!['data']['<%= class_name.pluralize.camelize(:lower) %>']['collection']
+        expect(<%= class_name.pluralize.underscore %>.length).to eq(1)
+      end
+
+      it 'returns metadata' do
+        expect(graphql!['data']['<%= class_name.pluralize.camelize(:lower) %>']['metadata']['totalCount']).not_to be_nil
+      end
+
+      it 'not has error' do
+        expect(graphql!['errors']).to be_nil
+      end
+    end
+
+    context 'when sortBy set' do
+      before do
+        prepare_context({ current_user: user })
+        prepare_query_variables({
+                                  sortBy: {
+                                    attribute: 'createdAt',
+                                    direction: 'asc'
+                                  }
+                                })
+
+        create_list(:<%= class_name.underscore %>, 20)
+      end
+
+      it 'returns ordered <%= class_name.pluralize.underscore.humanize(capitalize: false) %>' do
+        items = graphql!['data']['<%= class_name.pluralize.camelize(:lower) %>']['collection']
+        (items.length - 2).times do |i|
+          expect(DateTime.parse(items[i]['createdAt']) <= DateTime.parse(items[i + 1]['createdAt'])).to be_truthy
+        end
+      end
+
+      it 'returns metadata' do
+        expect(graphql!['data']['<%= class_name.pluralize.camelize(:lower) %>']['metadata']['totalCount']).not_to be_nil
+      end
+
+      it 'not has error' do
+        expect(graphql!['errors']).to be_nil
+      end
+    end
+    <% @string_attr = class_attributes.select {|a| [:string].include? a.type} %><% if @string_attr.length > 0 %>
+    context 'when used text_search' do
+      before do
+        @<%= class_name.underscore %> = create(:<%= class_name.underscore %>)
+        prepare_context({ current_user: user })
+        prepare_query_variables({
+                                  filter: {
+                                    textSearch: @<%= class_name.underscore %>.<%= @string_attr[0].name %>
+                                  }
+                                })
+      end
+
+      it 'returns only filtered <%= class_name.underscore.humanize(capitalize: false) %>' do
+        <%= class_name.pluralize.underscore %> = graphql!['data']['<%= class_name.pluralize.camelize(:lower) %>']['collection']
+        expect(<%= class_name.pluralize.underscore %>.first['<%= @string_attr[0].name.camelize(:lower) %>']).to eq(@<%= class_name.underscore %>.<%= @string_attr[0].name %>)
+      end
+
+      it 'returns metadata' do
+        expect(graphql!['data']['<%= class_name.pluralize.camelize(:lower) %>']['metadata']['totalCount']).not_to be_nil
+      end
+
+      it 'not has error' do
+        expect(graphql!['errors']).to be_nil
+      end
+    end<% end %>
+  end
+end

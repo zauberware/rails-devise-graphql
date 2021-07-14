@@ -1,0 +1,43 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+AllCops:
+  TargetRubyVersion: 2.6
+  NewCops: enable
+  Exclude:
+    - "db/**/*"
+    - "script/**/*"
+    - "bin/**/*"
+    - "vendor/**/*"
+    - "app/helpers/ui_helper*"
+    - "spec/spec_helper*"
+    - "spec/rails_helper*"
+    - Gemfile*
+Metrics/MethodLength:
+  Max: 15
+Metrics/AbcSize:
+  Max: 25
+Style/MethodCallWithoutArgsParentheses:
+  Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - "config/**/*"
+    - "spec/**/*"
+    - "lib/tasks/**/*"
+Layout/LineLength:
+  Exclude:
+    - "config/**/*"
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/InstanceVariable:
+  Enabled: false
+RSpec/UnspecifiedException:
+  Enabled: false
+RSpec/ExampleLength:
+  Max: 10
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
+Naming/PredicateName:
+  Exclude:
+    - "app/graphql/**/*"

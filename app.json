@@ -1,0 +1,118 @@
+{
+  "name": "Rails 6 boilerplate with devise, JWT, graphQL, CanCanCan and RailsAdmin",
+  "description": "This is a boilerplate to build your next SaaS product. It's a RubyOnRails 6 backend with Authentication and GraphQL API. It works nicely together with clients made with React.js & React.Native or any other frontend which implements the JSON Web Tokens philosophy.",
+  "keywords": [
+    "saas",
+    "saas-boilerplate",
+    "ruby-on-rails",
+    "rails5",
+    "devise",
+    "graphql",
+    "apollo-server",
+    "ruby-graphql",
+    "rails-boilerplate",
+    "rails-api-only",
+    "api-only",
+    "gatsby-backend",
+    "reactjs-backend",
+    "reactnative-backend",
+    "vue.js-backend",
+    "angular-backend",
+    "graphql-api"
+  ],
+  "website": "https://www.zauberware.com/",
+  "repository": "https://github.com/zauberware/rails-devise-graphql",
+  "logo": "https://avatars3.githubusercontent.com/u/1753330?s=200&v=4",
+  "success_url": "/",
+  "scripts": {
+    "postdeploy": "rake db:migrate && rake db:seed"
+  },
+  "env": {
+    "DEVISE_SECRET_KEY": {
+      "description": "A secret key for verifying the integrity of signed JWT tokens.",
+      "value": "replace-this-key-with-a-secret"
+    },
+    "DEFAULT_URL": {
+      "description": "Enter the url of this application. If you deploy to heroku set your heroku address.",
+      "value": "http://...herokuapp.com"
+    },
+    "CLIENT_URL": {
+      "description": "Enter the client domain for CORS.",
+      "value": "http://0.0.0.0:8000"
+    },
+    "DEVISE_MAILER_FROM": {
+      "description": "Set the default from address for mailers.",
+      "value": "demo@domain.com"
+    },
+    "ADMIN_EMAIL": {
+      "description": "Admin default login.",
+      "value": "demo@zauberware.com"
+    },
+    "ADMIN_PASSWORD": {
+      "description": "Admin default password.",
+      "value": "demo1234"
+    },
+    "ADMIN_FIRST_NAME": {
+      "description": "Admin default firstname.",
+      "value": "John"
+    },
+    "ADMIN_LAST_NAME": {
+      "description": "Admin default lastname.",
+      "value": "Doe"
+    },
+    "IS_HTTP_AUTH_PROTECTED": {
+      "description": "Enable http auth protection with setting this to true.",
+      "value": "false"
+    },
+    "HTTP_AUTH_USER": {
+      "description": "Set user for HTTP Auth protection.",
+      "value": "demo"
+    },
+    "HTTP_AUTH_PASSWORD": {
+      "description": "Set password for HTTP Auth protection.",
+      "value": "demo1234"
+    },
+    "WEB_CONCURRENCY": {
+      "description": "Specifies the number of `workers` to boot in clustered mode.",
+      "value": "2"
+    },
+    "RAILS_MAX_THREADS": {
+      "description": "Puma can serve each request in a thread from an internal thread pool.",
+      "value": "5"
+    },
+    "SMTP_ADDRESS": {
+      "description": "Set a smtp server for sending emails.",
+      "value": "smtp.DOMAIN.COM"
+    },
+    "SMTP_PORT": {
+      "description": "Set the port for sending mails.",
+      "value": "587"
+    },
+    "SMTP_DOMAIN": {
+      "description": "Set domain",
+      "value": ""
+    },
+    "SMTP_USERNAME": {
+      "description": "Set SMTP username",
+      "value": ""
+    },
+    "SMTP_PASSWORD": {
+      "description": "Set SMTP password",
+      "value": ""
+    },
+    "SMTP_AUTH": {
+      "description": "Set SMTP authentication method.",
+      "value": "plain"
+    },
+    "SMTP_ENABLE_STARTTLS_AUTO": {
+      "description": "Enable / disable auto starttls.",
+      "value": "true"
+    }
+  },
+  "image": "heroku/ruby",
+  "addons": [
+    {
+      "plan": "heroku-postgresql:hobby-dev"
+    }
+  ]
+}

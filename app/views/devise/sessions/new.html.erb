@@ -1,0 +1,35 @@
+<div class="authWrapper">
+  <div class='logo-wrapper'>
+    <%= image_tag('logo.svg', width: '200px', alt: 'Logo' ) %>
+  </div>
+  <hr/>
+  <h2><%= t('.sign_in') %></h2>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit t('.sign_in') %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+
+</div>

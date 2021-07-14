@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+module Mutations
+  module <%= class_name.pluralize %>
+    # Creates a new <%= class_name.underscore.downcase.gsub('_', ' ') %>.
+    class Create<%= class_name %> < Mutations::CreateMutationBase
+      description 'Creates a new <%= class_name.underscore.downcase.gsub('_', ' ') %>.'
+      argument :attributes, Types::<%= class_name.pluralize %>::<%= class_name %>InputType, required: true
+      payload_type Types::<%= class_name.pluralize %>::<%= class_name %>Type
+
+      protected
+
+      def resources
+        ::<%= class_name %>
+      end
+    end
+  end
+end

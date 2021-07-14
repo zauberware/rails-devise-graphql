@@ -1,0 +1,111 @@
+# frozen_string_literal: true
+<%
+  def fake_value(type)
+    return "SecureRandom.uuid" if type.to_s == 'uuid'
+
+    return "Faker::Boolean.boolean" if type.to_s == 'boolean'
+
+    return "Faker::Types.rb_string" if type.to_s == 'text'
+
+    return "Faker::Number.decimal(l_digits: 2)" if type.to_s == 'decimal'
+
+    return "Time.current.iso8601" if type.to_s == 'datetime' || type.to_s == 'date'
+
+    return "Faker::Types.rb_#{type}"
+  end
+%>
+require 'rails_helper'
+
+RSpec.describe Mutations::<%= class_name.pluralize %>::Update<%= class_name %> do
+  before do
+    # reset vars and context
+    prepare_query_variables({})
+    prepare_query("
+      mutation update<%= class_name %>($id: ID!, $attributes: <%= class_name %>Input!){
+        update<%= class_name %>(id: $id, attributes: $attributes) {<% class_attributes.each do |attribute| %>
+          <%= attribute.name.camelize(:lower) %><% end %>
+        }
+      }
+    ")
+  end
+
+  let!(:user) do
+    create(:user)
+  end
+
+  describe 'update<%= class_name %>' do
+    context 'when there\'s no current user' do
+      before do
+        @<%= class_name.underscore.downcase %> = create(:<%= class_name.underscore.downcase %>)
+        prepare_context({ current_user: nil, <%= class_name.underscore.downcase %>: @<%= class_name.underscore.downcase %> })
+
+        prepare_query_variables({
+                                  id: @<%= class_name.underscore.downcase %>.id,
+                                  attributes: {<% class_attributes.reject {|a| ['id', 'created_at', 'updated_at'].include?(a.name)}.each_with_index do |attribute, index| %>
+                                    <%= attribute.name.camelize(:lower) %>: <%= fake_value(attribute.type) %><%= index + 1 >= class_attributes.reject {|a| ['id', 'created_at', 'updated_at'].include?(a.name)}.length ? '' : ',' %><% end %>}
+                                })
+      end
+
+      it 'returns error' do
+        expect(graphql!['errors'][0]['message']).not_to be_empty
+      end
+    end
+
+    context 'with invalid id' do
+      before do
+        @<%= class_name.underscore.downcase %> = create(:<%= class_name.underscore.downcase %>)
+        prepare_context({ current_user: user, <%= class_name.underscore.downcase %>: @<%= class_name.underscore.downcase %> })
+
+        prepare_query_variables({
+                                  id: 'wrong',
+                                  attributes: {}
+                                })
+      end
+
+      it 'returns error' do
+        expect(graphql!['result']).to be_nil
+      end
+    end
+
+    context 'with invalid params' do
+      before do
+        @<%= class_name.underscore.downcase %> = create(:<%= class_name.underscore.downcase %>)
+        prepare_context({ current_user: user, <%= class_name.underscore.downcase %>: @<%= class_name.underscore.downcase %> })
+
+        prepare_query_variables({
+                                  id: @<%= class_name.underscore.downcase %>.id,
+                                  attributes: { test: 'wrong' }
+                                })
+      end
+
+      it 'returns error' do
+        message = graphql!['errors'][0]['message']
+        expect(message).not_to be_nil
+      end
+    end
+
+    context 'with valid params' do
+      before do
+        @<%= class_name.underscore.downcase %> = create(:<%= class_name.underscore.downcase %>)
+        @new_val = <%= fake_value(class_attributes.reject {|a| ['id', 'created_at', 'updated_at'].include?(a.name)}[0].type) %>
+        prepare_context({ current_user: user, <%= class_name.underscore.downcase %>: @<%= class_name.underscore.downcase %> })
+
+        prepare_query_variables({
+                                  id: @<%= class_name.underscore.downcase %>.id,
+                                  attributes: {
+                                    <%= class_attributes.reject {|a| ['id', 'created_at', 'updated_at'].include?(a.name)}[0].name.camelize(:lower) %>: @new_val
+                                  }
+                                })
+      end
+
+      it 'does not have errors' do
+        expect(graphql!['errors']).to be_nil
+      end
+
+      it 'changes attributes' do
+        val = graphql!['data']['update<%= class_name %>']['<%= class_attributes.reject {|a| ['id', 'created_at', 'updated_at'].include?(a.name)}[0].name.camelize(:lower) %>']
+        expect(val).to eq(@new_val)
+      end
+    end
+  end
+end

@@ -1,0 +1,12 @@
+de:
+  errors:
+    messages:
+      already_confirmed: wurde bereits bestätigt; bitte versuchen Sie, sich anzumelden
+      confirmation_period_expired: musste innerhalb von %{period} bestätigt werden, bitte neu anfordern.
+      expired: ist abgelaufen, bitte neu anfordern
+      not_found: nicht gefunden
+      not_locked: ist nicht gesperrt
+      not_saved:
+        one: "%{resource} konnte aufgrund eines Fehlers nicht gespeichert werden:"
+        other: "%{count} Fehler verhinderten das Speichern von %{resource}:"
+      resource_not_found: "%{resource} nicht gefunden."

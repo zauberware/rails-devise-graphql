@@ -1,0 +1,109 @@
+@import "_vars";
+
+/* TOOLS ======================================================== */
+/* External tools, mixins, functions ============================ */
+
+
+/* GENERIC ====================================================== */
+/* Project-agnostic, normalizers, box-sizing, etc. ============== */
+
+* { box-sizing: border-box; }
+
+/* ELEMENTS ===================================================== */
+/* Basic styling for any HTML-tag without classes =============== */
+
+body {
+  font-size: 17px;
+  font-family: $font-family-base;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  overflow-x: hidden;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: $gray-lighter;
+}
+
+a{
+  color: $brand-primary;
+  text-decoration: none;
+
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+code{
+  font-size: 0.95rem;
+  font-weight: 300;
+  padding: 3px;
+  margin: 0 3px;
+  border-radius: 4px;
+  line-height: 1;
+  background-color: $gray-lighter;
+}
+
+input{
+  display: inline-block;
+  margin: 5px 0;
+  border-radius: 6px;
+  width: 100%;
+  padding: 8px 16px;
+  background-color: rgb(255,255,255);
+  border: 1px solid $color--border;
+}
+
+input[type=submit],
+.btn {
+  margin: 20px 0;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 12px 24px;
+  -moz-appearance: none;
+  cursor: pointer;
+  border-radius: 6px;
+  background-color: $brand-primary;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: 700;
+  width: 100%;
+  border: medium none;
+  line-height: 18px;
+  -moz-box-align: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: $font-family-serif;
+  color: $gray;
+}
+
+.field{
+  text-align: left;
+}
+
+.logo-wrapper{
+  background-color: white;
+  display: inline-block;
+  padding: 15px 10px 10px 10px;
+}
+
+.flash{
+  padding: 10px;
+  text-align: center;
+  background: $brand-info;
+  margin: 10px 0;
+  color: white;
+  border-radius: 3px;
+  font-weight: 700;
+
+  &--error{
+    background: $brand-danger;
+  }
+
+  &--alert{
+    background: $brand-warning;
+  }
+}

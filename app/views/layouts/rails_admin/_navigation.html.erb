@@ -1,0 +1,16 @@
+<div class='container-fluid'>
+  <div class='navbar-header'>
+    <button class='button navbar-toggle collapsed' data-toggle='collapse' data-target='#secondary-navigation'>
+      <span class='sr-only'><%= t('admin.toggle_navigation') %></span>
+      <span class='icon-bar'></span>
+      <span class='icon-bar'></span>
+      <span class='icon-bar'></span>
+    </button>
+    <a href='<%= dashboard_path %>' class='logo-wrapper'>
+      <%= image_tag('logo.svg', height: '20px') %>    
+    </a>
+  </div>
+  <div id='secondary-navigation' class='collapse navbar-collapse'>
+    <%= render partial: 'layouts/rails_admin/secondary_navigation' %>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+# frozen_string_literal: true
+
+module Mutations
+  module <%= class_name.pluralize %>
+    # Deletes a <%= class_name.underscore.downcase.gsub('_', ' ') %>.
+    class Delete<%= class_name %> < Mutations::DeleteMutationBase
+      payload_type Boolean
+
+      protected
+
+      def resources
+        ::<%= class_name %>.accessible_by(current_ability)
+      end
+    end
+  end
+end

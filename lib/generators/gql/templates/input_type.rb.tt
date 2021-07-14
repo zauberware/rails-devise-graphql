@@ -1,0 +1,23 @@
+# frozen_string_literal: true
+<%
+  def graphql_typify(type)
+    return 'ID' if type.to_s == 'uuid'
+
+    return 'String' if  type.to_s == 'text'
+
+    return 'Float' if  type.to_s == 'decimal'
+
+    return 'GraphQL::Types::ISO8601DateTime' if type.to_s == 'datetime' || type.to_s == 'date'
+
+    return type.capitalize
+  end
+%>
+module Types
+  module <%= class_name.pluralize %>
+    # Input type for a <%= class_name.underscore.downcase.gsub('_', ' ') %>
+    class <%= class_name %>InputType < Types::BaseInputObject
+      description 'Attributes to create or update a <%= class_name.underscore.downcase.gsub('_', ' ') %>.'<% class_attributes.reject {|a| ['id', 'created_at', 'updated_at'].include?(a.name)}.each do |attribute| %>
+      argument :<%= attribute.name %>, <%= graphql_typify(attribute.type) %>, '<%= attribute.name.capitalize.gsub('_', ' ') %> for <%= class_name.underscore.downcase.gsub('_', ' ') %>', required: false<% end %>
+    end
+  end
+end

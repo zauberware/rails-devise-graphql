@@ -1,0 +1,74 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+RSpec.describe Mutations::<%= class_name.pluralize %>::Delete<%= class_name %> do
+  before do
+    prepare_query_variables({})
+    prepare_query("
+      mutation delete<%= class_name %>($id: ID!){
+        delete<%= class_name %>(id: $id)
+      }
+    ")
+  end
+
+  let!(:user) do
+    create(:user)
+  end
+
+  describe 'delete<%= class_name %>' do
+    context 'when there\'s no current user' do
+      before do
+        @<%= class_name.underscore %> = create(:<%= class_name.underscore %>)
+        prepare_context({ current_user: nil, <%= class_name.underscore %>:  @<%= class_name.underscore %> })
+
+        prepare_query_variables({
+                                  id: @<%= class_name.underscore %>.id
+                                })
+      end
+
+      it 'returns error' do
+        expect(graphql!['errors'][0]['message']).not_to be_empty
+      end
+    end
+
+    context 'with invalid id' do
+      before do
+        @<%= class_name.underscore %> = create(:<%= class_name.underscore %>)
+        prepare_context({ current_user: user, <%= class_name.underscore %>: @<%= class_name.underscore %> })
+
+        prepare_query_variables({
+                                  id: 'wrong'
+                                })
+      end
+
+      it 'returns nil' do
+        expect(graphql!['data']['delete<%= class_name %>']).to be_nil
+      end
+    end
+
+    context 'with valid params' do
+      before do
+        @<%= class_name.underscore %> = create(:<%= class_name.underscore %>)
+        prepare_context({ current_user: user, <%= class_name.underscore %>: @<%= class_name.underscore %> })
+
+        prepare_query_variables({
+                                  id: @<%= class_name.underscore %>.id
+                                })
+      end
+
+      it 'return true' do
+        expect(graphql!['data']['delete<%= class_name %>']).to eq(true)
+      end
+
+      it 'does not have errors' do
+        expect(graphql!['errors']).to be_nil
+      end
+
+      it 'deletes <%= class_name.underscore %>' do
+        graphql!
+        expect(<%= class_name %>.unscoped.find_by(id: @<%= class_name.underscore %>.id)).to be_nil
+      end
+    end
+  end
+end

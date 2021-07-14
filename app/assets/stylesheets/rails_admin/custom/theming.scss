@@ -1,0 +1,39 @@
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700|Roboto+Slab:400,700&display=swap&subset=latin-ext');
+
+body.rails_admin{
+
+  h1,h2,h3,h4,h5,h6{
+    font-family: $font-family-serif;
+    color: $gray-dark;
+  }
+
+  .navbar{
+    border-bottom: 3px solid white;
+    box-shadow: 1px 2px 5px rgba(0,0,0,.1);
+    max-height: 53px;
+    overflow: visible;
+    
+  }
+
+  .nav {
+    .icon, .fa{
+      margin-right: 12px;
+    }
+  }
+
+  .logo-wrapper{
+    display: inline-block;
+    padding: 15px 10px 10px 10px;
+  }
+
+  .fieldset .label.label-info{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .fieldset .well{
+    border-top-left-radius: 0;
+  }
+
+}

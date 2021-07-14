@@ -1,0 +1,54 @@
+# frozen_string_literal: true
+<%
+  def graphql_typify(type)
+    return 'ID' if type.to_s == 'uuid'
+
+    return 'String' if type.to_s == 'text'
+
+    return 'String' if type.to_s == 'datetime' || 'date'
+
+    return type.capitalize
+  end
+%>
+module Resolvers
+  module <%= class_name.pluralize %>
+    # Custom SORTING
+    class <%= class_name %>SortEnum < ::Types::SortAttributeEnum<% class_attributes.reject {|a| ['created_at', 'updated_at'].include?(a.name)}.each do |attribute| %>
+      value '<%= attribute.name.camelize(:lower) %>', value: '<%= attribute.name %>'<% end %>
+    end
+
+    class <%= class_name %>SortType < ::Types::BaseSortType
+      argument :attribute, <%= class_name %>SortEnum, required: true, description: 'Choose the column to sort the resource.'
+    end
+
+    # FILTERS
+    # inline input type definition for the advanced filter
+    class <%= class_name %>FilterType < ::Types::BaseInputObject
+      argument :OR, [self], required: false
+      argument :text_search, String, required: false<% class_attributes.each do |attribute| %>
+      argument :<%= attribute.name %>, <%= graphql_typify(attribute.type) %>, required: false<% end %>
+    end
+
+    # Resolver to return <%= class_name.pluralize.underscore.downcase.gsub('_', ' ') %>
+    class <%= class_name.pluralize %> < Resolvers::BaseResolver
+      description 'Returns all <%= class_name.pluralize.underscore.downcase.gsub('_', ' ') %>'
+      type Types::<%= class_name.pluralize %>::<%= class_name %>Type.collection_type, null: false
+      argument :page, Integer, required: false
+      argument :limit, Integer, required: false
+      argument :sort_by, <%= class_name %>SortType, required: false
+      argument :filter, <%= class_name %>FilterType, required: false
+
+      def resources
+        raise CanCan::AccessDenied, 'access denied' if context[:current_user].nil?
+
+        ::<%= class_name %>.accessible_by(current_ability)
+      end
+
+      def resolve(filter: nil, sort_by: nil, page: 1, limit: 100)
+        @resources = resources.search_and_filter(resources, filter, sort_by)
+        @resources = @resources.page(page).per(limit)
+        @resources
+      end
+    end
+  end
+end

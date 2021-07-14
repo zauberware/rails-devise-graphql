@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+
+module Resolvers
+  module <%= class_name.pluralize %>
+    # Resolver to return a <%= class_name.underscore.downcase.gsub('_', ' ') %>
+    class <%= class_name %> < Resolvers::BaseResolver
+      type Types::<%= class_name.pluralize %>::<%= class_name %>Type, null: true
+      description 'Returns the <%= class_name.underscore.downcase.gsub('_', ' ') %> for a requested id'
+
+      argument :id, ID, required: true
+
+      def resolve(id:)
+        raise CanCan::AccessDenied, 'access denied' if context[:current_user].nil?
+
+        ::<%= class_name %>.accessible_by(current_ability).find_by(id: id)
+      end
+    end
+  end
+end

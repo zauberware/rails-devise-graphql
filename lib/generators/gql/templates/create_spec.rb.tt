@@ -1,0 +1,88 @@
+# frozen_string_literal: true
+<%
+  def fake_value(type)
+    return "SecureRandom.uuid" if type.to_s == 'uuid'
+
+    return "Faker::Boolean.boolean" if type.to_s == 'boolean'
+
+    return "Faker::Types.rb_string" if type.to_s == 'text'
+
+    return "Faker::Number.decimal(l_digits: 2)" if type.to_s == 'decimal'
+
+    return "Time.current.iso8601" if type.to_s == 'date' || type.to_s == 'datetime'
+
+    return "Faker::Types.rb_#{type}"
+  end
+%>
+require 'rails_helper'
+
+RSpec.describe Mutations::<%= class_name.pluralize %>::Create<%= class_name %> do
+  before do
+    # reset vars and context
+    prepare_query_variables({})
+    prepare_query("
+      mutation create<%= class_name %>($attributes: <%= class_name %>Input!){
+        create<%= class_name %>(attributes: $attributes) {<% class_attributes.each do |attribute| %>
+          <%= attribute.name.camelize(:lower) %><% end %>
+        }
+      }
+    ")
+  end
+
+  let!(:user) do
+    create(:user)
+  end
+
+  describe 'create<%= class_name %>' do
+    context 'when there\'s no current user' do
+      before do
+        prepare_context({ current_user: nil })
+
+        prepare_query_variables({
+                                  attributes: {<% class_attributes.reject {|a| ['id', 'created_at', 'updated_at'].include?(a.name)}.each_with_index do |attribute, index| %>
+                                    <%= attribute.name.camelize(:lower) %>: <%= fake_value(attribute.type) %><%= index + 1 >= class_attributes.reject {|a| ['id', 'created_at', 'updated_at'].include?(a.name)}.length ? '' : ',' %><% end %>
+                                  }
+                                })
+      end
+
+      it 'returns error' do
+        expect(graphql!['errors'][0]['message']).not_to be_empty
+      end
+    end
+
+    context 'with invalid params' do
+      before do
+        prepare_context({ current_user: user })
+        prepare_query_variables({
+                                  attributes: {
+                                    test: 'wrong'
+                                  }
+                                })
+      end
+
+      it 'returns error' do
+        message = graphql!['errors'][0]['message']
+        expect(message).not_to be_nil
+      end
+    end
+
+    context 'with valid params' do
+      before do
+        prepare_context({ current_user: user })
+        prepare_query_variables({
+                                  attributes: {<% class_attributes.reject {|a| ['id', 'created_at', 'updated_at'].include?(a.name)}.each_with_index do |attribute, index| %>
+                                    <%= attribute.name.camelize(:lower) %>: <%= fake_value(attribute.type) %><%= index + 1 >= class_attributes.reject {|a| ['id', 'created_at', 'updated_at'].include?(a.name)}.length ? '' : ',' %><% end %>
+                                  }
+                                })
+      end
+
+      it 'not has error' do
+        expect(graphql!['errors']).to be_nil
+      end
+
+      it 'creates <%= class_name.underscore.downcase.gsub('_', ' ') %>' do
+        expect(graphql!['data']['create<%= class_name %>']['id']).not_to be_nil
+      end
+    end
+  end
+end
