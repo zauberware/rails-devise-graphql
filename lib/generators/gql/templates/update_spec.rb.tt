@@ -7,7 +7,7 @@
 
     return "Faker::Types.rb_string" if type.to_s == 'text'
 
-    return "Faker::Number.decimal(l_digits: 2)" if type.to_s == 'decimal'
+    return "Faker::Number.decimal(l_digits: 2)" if type.to_s == 'decimal' || type.to_s == 'float'
 
     return "Time.current.iso8601" if type.to_s == 'datetime'
 
