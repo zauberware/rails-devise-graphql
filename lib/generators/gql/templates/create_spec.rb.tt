@@ -9,7 +9,9 @@
 
     return "Faker::Number.decimal(l_digits: 2)" if type.to_s == 'decimal'
 
-    return "Time.current.iso8601" if type.to_s == 'date' || type.to_s == 'datetime'
+    return "Time.current.iso8601" if type.to_s == 'datetime'
+
+    return "Time.current.beginning_of_day.iso8601" if type.to_s == 'date'
 
     return "Faker::Types.rb_#{type}"
   end
