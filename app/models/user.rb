@@ -69,6 +69,7 @@ class User < ApplicationRecord
          :lockable,
          :trackable,
          :invitable
+  include DeviseTokenAuth::Concerns::User
 
   # add new roles to the end
   enum role: { user: 0, admin: 1, superadmin: 2 }
