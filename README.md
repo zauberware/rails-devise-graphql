@@ -364,3 +364,4 @@ __Script:__ <https://github.com/zauberware/rails-devise-graphql>
 __Author website:__ [https://www.zauberware.com](https://www.zauberware.com)
 
 ![zauberware technologies](https://avatars3.githubusercontent.com/u/1753330?s=200&v=4)
+
