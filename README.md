@@ -8,9 +8,9 @@ This is a boilerplate to build your next SaaS product. It's a RubyOnRails 6 back
 
 ### Versions
 
-- Current ruby version `2.6.x`
-- Bundler version `2.1.4`
-- Rails version `6.0.X`
+- Current ruby version `3.0.x`
+- Bundler version `2.2.17`
+- Rails version `6.1.3.x`
 - PostgreSQL Server as db connector
 
 ### Dependencies

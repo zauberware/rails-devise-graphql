@@ -3,10 +3,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '3.0.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.3'
+gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -64,7 +64,7 @@ group :development, :test do
   gem 'dotenv-rails'                        # craate a .env file to set local environment variables
   gem 'factory_bot_rails'                   # model mocks with factory bot
   gem 'rspec-rails', '~> 3.8'               # used testframework
-  gem 'faker', '~> 1.8'
+  gem 'faker'
 end
 
 group :test do

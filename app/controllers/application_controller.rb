@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
-      format.js   { render 'errors/unauthorized', status: 403 }
+      format.js   { render 'errors/unauthorized', status: :forbidden }
       format.html { redirect_to '/', alert: exception.message }
-      format.json { render json: { errors: { permission: [exception.message] } }, status: 403 }
+      format.json { render json: { errors: { permission: [exception.message] } }, status: :forbidden }
     end
   end
 
