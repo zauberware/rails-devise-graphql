@@ -21,7 +21,7 @@ gem 'search_object_graphql'                 # Search Object for graphql-ruby
 gem 'rack-cors'                             # Rack CORS settings
 gem 'rails_admin', '~> 2.0.2'               # Admin interface
 gem 'cancancan'                             # Defining abilities
-gem 'image_processing', '~> 1.2'            # Image processing
+gem 'image_processing', '~> 1.12'           # Image processing
 gem 'mini_magick'                           # Image manipulation with rmagick
 gem 'friendly_id', '5.3.0'                  # Auto generate slugs for resources
 gem 'foreman'
