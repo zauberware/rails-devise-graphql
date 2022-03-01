@@ -110,7 +110,7 @@ GEM
       railties (>= 5.0.0)
     faker (1.9.6)
       i18n (>= 0.7)
-    ffi (1.13.1)
+    ffi (1.15.5)
     foreman (0.87.2)
     friendly_id (5.3.0)
       activerecord (>= 4.0.0)
@@ -126,7 +126,7 @@ GEM
       concurrent-ruby (~> 1.0)
     i18n-spec (0.6.0)
       iso
-    image_processing (1.11.0)
+    image_processing (1.12.2)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
     iso (0.3.0)
@@ -283,8 +283,8 @@ GEM
     rubocop-rspec (1.43.2)
       rubocop (~> 0.87)
     ruby-progressbar (1.10.1)
-    ruby-vips (2.0.17)
-      ffi (~> 1.9)
+    ruby-vips (2.1.4)
+      ffi (~> 1.12)
     ruby_dep (1.5.0)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -353,7 +353,7 @@ DEPENDENCIES
   graphql-auth!
   graphql-errors
   i18n-spec
-  image_processing (~> 1.2)
+  image_processing (~> 1.12)
   listen (>= 3.0.5, < 3.2)
   mini_magick
   pg
