@@ -178,7 +178,7 @@ GEM
       ast (~> 2.4.1)
     pg (1.2.3)
     puma (3.12.6)
-    rack (2.2.3)
+    rack (2.2.6.2)
     rack-attack (6.3.1)
       rack (>= 1.0, < 3)
     rack-cors (1.1.1)
